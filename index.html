@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="light dark" />
+<meta name="description" content="Portfolio de Mohamed EL MEKAOUI — étudiant ingénieur à l'ESIR (Rennes), développement logiciel Java / Spring Boot et JavaScript / TypeScript. Recherche un stage de 3 mois à partir de juin 2027." />
+<link rel="icon" href="data:," />
+<title>Mohamed EL MEKAOUI — Portfolio</title>
+<style>
+  :root{
+    --bg:#fbfbfa;
+    --surface:#ffffff;
+    --text:#1c1e1c;
+    --muted:#5b605b;
+    --line:#e2e4e0;
+    --accent:#1d5c3f;
+    --accent-hover:#174a33;
+    --accent-soft:#eaf2ec;
+    --tag-bg:#f0f1ef;
+    --code-bg:#f4f4f2;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#141615;
+      --surface:#1b1e1c;
+      --text:#e8eae8;
+      --muted:#a3a8a3;
+      --line:#2c302d;
+      --accent:#6fc493;
+      --accent-hover:#8fd3ab;
+      --accent-soft:#1e2b23;
+      --tag-bg:#262a27;
+      --code-bg:#222623;
+    }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size:16.5px; line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--accent); text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:880px; margin:0 auto; padding:0 20px}
+
+  /* Header */
+  header.top{
+    border-bottom:1px solid var(--line);
+    position:sticky; top:0; background:var(--bg); z-index:10;
+  }
+  .top-inner{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 0; flex-wrap:wrap}
+  .brand{font-weight:700; font-size:17px; color:var(--text); letter-spacing:-.01em}
+  .brand:hover{text-decoration:none}
+  nav.main{display:flex; gap:4px; flex-wrap:wrap; align-items:center}
+  nav.main a{color:var(--muted); font-size:14.5px; padding:8px 10px; min-height:36px; display:inline-flex; align-items:center}
+  nav.main a:hover{color:var(--text); text-decoration:none}
+  nav.main a.cv-link{
+    color:var(--accent); border:1px solid var(--accent); border-radius:6px;
+    padding:7px 12px; font-weight:600; margin-left:6px;
+  }
+  nav.main a.cv-link:hover{background:var(--accent-soft); text-decoration:none}
+
+  /* Hero */
+  .hero{padding:56px 0 8px}
+  .hero h1{font-size:40px; line-height:1.15; margin:0 0 6px; letter-spacing:-.02em; font-weight:800}
+  .hero .role{font-size:20px; color:var(--text); margin:0 0 4px; font-weight:500}
+  .hero .school{color:var(--muted); font-size:16.5px; margin:0 0 22px}
+  .status{
+    display:inline-block; background:var(--accent-soft); color:var(--accent);
+    border:1px solid var(--line); border-radius:6px; padding:10px 14px;
+    font-size:15px; font-weight:600; margin-bottom:26px; line-height:1.5;
+  }
+  .hero-actions{display:flex; gap:10px; flex-wrap:wrap}
+  .btn{
+    display:inline-flex; align-items:center; min-height:44px; padding:10px 18px;
+    border-radius:6px; font-size:15.5px; font-weight:600; border:1px solid var(--accent);
+  }
+  .btn-solid{background:var(--accent); color:#fff}
+  @media (prefers-color-scheme: dark){ .btn-solid{color:#101613} }
+  .btn-solid:hover{background:var(--accent-hover); text-decoration:none}
+  .btn-ghost{color:var(--accent); background:transparent}
+  .btn-ghost:hover{background:var(--accent-soft); text-decoration:none}
+
+  /* Sections */
+  section{padding:40px 0 8px}
+  h2{
+    font-size:22px; margin:0 0 18px; padding-bottom:8px;
+    border-bottom:2px solid var(--text); display:inline-block; letter-spacing:-.01em;
+  }
+  section p{margin:0 0 14px; max-width:68ch}
+  .muted{color:var(--muted)}
+
+  /* Projects */
+  .project{padding:20px 0; border-bottom:1px solid var(--line)}
+  .project:last-child{border-bottom:none}
+  .project-head{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; margin-bottom:4px}
+  .project h3{font-size:18.5px; margin:0; letter-spacing:-.01em}
+  .ctx{
+    font-size:12.5px; font-weight:600; color:var(--muted);
+    background:var(--tag-bg); border-radius:4px; padding:2px 8px; white-space:nowrap;
+  }
+  .project p{margin:0 0 10px; color:var(--text)}
+  .tags{display:flex; flex-wrap:wrap; gap:6px; list-style:none; margin:0; padding:0}
+  .tags li{
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size:12.5px; background:var(--code-bg); border:1px solid var(--line);
+    border-radius:4px; padding:2px 8px; color:var(--muted);
+  }
+
+  /* Experience / timeline */
+  .entry{padding:6px 0 18px}
+  .entry-head{display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; align-items:baseline}
+  .entry h3{font-size:18px; margin:0}
+  .entry .when{font-size:14.5px; color:var(--muted); white-space:nowrap}
+  .entry .where{color:var(--muted); font-size:15px; margin:2px 0 8px}
+  .entry ul{margin:0; padding-left:20px}
+  .entry li{margin-bottom:4px}
+
+  /* Skills */
+  .skills-grid{display:grid; grid-template-columns:1fr 1fr; gap:22px 36px}
+  @media (max-width:640px){ .skills-grid{grid-template-columns:1fr} }
+  .skill-group h3{font-size:15px; margin:0 0 8px; text-transform:none; color:var(--muted); font-weight:700}
+  .skill-group .tags li{font-size:13px; padding:3px 9px}
+
+  /* Two columns */
+  .two-col{display:grid; grid-template-columns:1fr 1fr; gap:8px 40px}
+  @media (max-width:640px){ .two-col{grid-template-columns:1fr} }
+  .cert-list, .plain-list{list-style:none; margin:0; padding:0}
+  .cert-list li, .plain-list li{padding:9px 0; border-bottom:1px solid var(--line)}
+  .cert-list li:last-child, .plain-list li:last-child{border-bottom:none}
+  .cert-list .org, .plain-list .sub{color:var(--muted); font-size:14.5px; display:block}
+
+  /* Contact */
+  .contact-box{
+    background:var(--surface); border:1px solid var(--line); border-radius:8px;
+    padding:22px; margin-top:4px;
+  }
+  .contact-box p{margin:0 0 10px}
+  .contact-box p:last-child{margin-bottom:0}
+  .contact-row{display:flex; gap:10px; flex-wrap:wrap; margin-top:16px}
+
+  footer{border-top:1px solid var(--line); margin-top:48px; padding:22px 0 34px}
+  footer p{color:var(--muted); font-size:14px; margin:0}
+
+  @media (max-width:640px){
+    .hero{padding:38px 0 4px}
+    .hero h1{font-size:31px}
+    .hero .role{font-size:18px}
+    nav.main a{padding:8px 7px}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-inner">
+    <a class="brand" href="#top">Mohamed EL MEKAOUI</a>
+    <nav class="main" aria-label="Navigation principale">
+      <a href="#a-propos">À propos</a>
+      <a href="#projets">Projets</a>
+      <a href="#experience">Expérience</a>
+      <a href="#competences">Compétences</a>
+      <a href="#contact">Contact</a>
+      <a class="cv-link" href="data:application/octet-stream;base64,JVBERi0xLjQKJZOMi54gUmVwb3J0TGFiIEdlbmVyYXRlZCBQREYgZG9jdW1lbnQgKG9wZW5zb3VyY2UpCjEgMCBvYmoKPDwKL0YxIDIgMCBSIC9GMiAzIDAgUiAvRjMgNCAwIFIKPj4KZW5kb2JqCjIgMCBvYmoKPDwKL0Jhc2VGb250IC9IZWx2ZXRpY2EgL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcgL05hbWUgL0YxIC9TdWJ0eXBlIC9UeXBlMSAvVHlwZSAvRm9udAo+PgplbmRvYmoKMyAwIG9iago8PAovQmFzZUZvbnQgL0hlbHZldGljYS1Cb2xkIC9FbmNvZGluZyAvV2luQW5zaUVuY29kaW5nIC9OYW1lIC9GMiAvU3VidHlwZSAvVHlwZTEgL1R5cGUgL0ZvbnQKPj4KZW5kb2JqCjQgMCBvYmoKPDwKL0Jhc2VGb250IC9IZWx2ZXRpY2EtT2JsaXF1ZSAvRW5jb2RpbmcgL1dpbkFuc2lFbmNvZGluZyAvTmFtZSAvRjMgL1N1YnR5cGUgL1R5cGUxIC9UeXBlIC9Gb250Cj4+CmVuZG9iago1IDAgb2JqCjw8Ci9Db250ZW50cyA5IDAgUiAvTWVkaWFCb3ggWyAwIDAgNTk1LjI3NTYgODQxLjg4OTggXSAvUGFyZW50IDggMCBSIC9SZXNvdXJjZXMgPDwKL0ZvbnQgMSAwIFIgL1Byb2NTZXQgWyAvUERGIC9UZXh0IC9JbWFnZUIgL0ltYWdlQyAvSW1hZ2VJIF0KPj4gL1JvdGF0ZSAwIC9UcmFucyA8PAoKPj4gCiAgL1R5cGUgL1BhZ2UKPj4KZW5kb2JqCjYgMCBvYmoKPDwKL1BhZ2VNb2RlIC9Vc2VOb25lIC9QYWdlcyA4IDAgUiAvVHlwZSAvQ2F0YWxvZwo+PgplbmRvYmoKNyAwIG9iago8PAovQXV0aG9yIChNb2hhbWVkIEVMIE1FS0FPVUkpIC9DcmVhdGlvbkRhdGUgKEQ6MjAyNjExMjEwNzQwMTErMDEnMDAnKSAvQ3JlYXRvciAoXCh1bnNwZWNpZmllZFwpKSAvS2V5d29yZHMgKCkgL01vZERhdGUgKEQ6MjAyNjExMjEwNzQwMTErMDEnMDAnKSAvUHJvZHVjZXIgKFJlcG9ydExhYiBQREYgTGlicmFyeSAtIFwob3BlbnNvdXJjZVwpKSAKICAvU3ViamVjdCAoXCh1bnNwZWNpZmllZFwpKSAvVGl0bGUgKENWIE1vaGFtZWQgRUwgTUVLQU9VSSkgL1RyYXBwZWQgL0ZhbHNlCj4+CmVuZG9iago4IDAgb2JqCjw8Ci9Db3VudCAxIC9LaWRzIFsgNSAwIFIgXSAvVHlwZSAvUGFnZXMKPj4KZW5kb2JqCjkgMCBvYmoKPDwKL0ZpbHRlciBbIC9BU0NJSTg1RGVjb2RlIC9GbGF0ZURlY29kZSBdIC9MZW5ndGggMzA5NAo+PgpzdHJlYW0KR2IhO2Y9YS9SbCZxODAxVygxTDsuLCQhOGRwUytKNENDNVRoX1BlVVpwYnBYLz8nQDksWDFEanBvLyFbI1RJUz9rMD41VCoiWWhnL1JNTSs8PzIwYHIsJkMpNW0yLWhMUUE+OyhhZElGXzY+ZDlqcUFUVmhnS2lhPCVEZm1GLFtpZiNMQms5OlxSJE0qZSgzVDApa0UsZSwtUl5wbi9MYk02QSUtXXUqIW1qcW5LZyZLWT9eWS8pPlZLKzlsMGF1XkMvLSZhMCkqVzo+KEVCU2Fdbzwwa0ojRyhlc0orI0dVbTskPiJJKWt0VSlgNG5pbFcsKWE3bTIqO144W05bIk0vMW8yLDI9bTtPZjloYSZxcTAtNCk+J1Ipa051IjpucExSTj0iMl9vUmI0P3VaXDpHWFk4ODYtRktdLjFiaWtNTFQnVitqOFByRzdgWU9nPygxI2E3V15QaG0qJ2kkKD5GTVkza1RmaF5ISCZeYUo9I09xc25kPSQyTGdlcTtHOWA7cVdHTm9aMCo7KDw+b09OU2oyJkAtVnU/Z3RuO15dZ0pEUTNYaSVRQjBAOikiRHIiJFBFNDc+IiksPD1zLCY7KmZCYGEwMUFRUTVEbzVHZTFCc1pXYm80LkZVMXRoZ0Rlc1lsXUE+LShGX05GPik0ImhTYnRzIz07RT5HOVdiZU4uTyRDOCM7VFdXMyM9QCxsbmsvallJYHEuQl9GbkMrMjZkKFpiOCcqcVhjQ0A+PTtsbklFZi0oJ0FuSHNnVWs0N0NBaDUvZ1gqU09oMGkhJFFzaXJQXT1iXjcqRF4hQiRzZlcyYywmLVVFRzBGS2RBLmRVYTEtNjRybnJSLEcyLUsoUXFAR1ZZLGhAajZDWF0nSy1UNiM7WExLYmEyJF1Fbm0pOjQ2XCcra21JNCY3Jigtam4zPVpnKSolXXRAK0E2Qk4rQlUlNEgzTFgxTipiXVtjWDk9Tyk5OTNBTj5NXGgjQERhLE9HZ1cjNk9QVm47SmoxRCpEazVDJSUiR0QjakhdVWVkUjgkLHEyRnFhJjsmWHBWP0NzVUtOXDksbF1pUjg5anIuLkRVUEojRDc4JEtJbE4sM1JAOSYpKEVNVDRGZyhtamY9V2xeLmBMPDdcOGlINTNUZzFPamlfRzE6Wk1IIy4lS2VbVEYrYypgUDdwQDU7RF1OPWRoaDdqRjcsYiMwK01VbWhtLj8ibGFXZV42RFhhbjdMak85Y242OUo2XUhvP21BUTFrWVU7cSJdPThqYSZjTCtIJ2BEbU4sMTxmXDM4Xl06YUplaVlAbj9LMExFUHAuNSJlZkNFZWkyWF1zYEVtcyw7SVJmSj1paCRgJzNsbDcqWF9fcVZxK2pwLGs8Kik9UDVkOTlyW2JTUSdhcjRKcSVRNz5jRlZaX29OTjQ1ITpoMGUiUz9TTz5HNSc7JDVQcG5qYihfZC9BYTdhS101OURicF4yM2FONW9PbTAoTlhNTC8xPTApY0UtI05qdDBBaDEocStTJXNgTV9McD1uWj9KRmpVUlw1XGIpb09kWSFDNE1dWSpsLTs6TiopbF49XkpQKWNHZGkoL0s8ZiZcKFZdXkZqYmVmLS9WNSQ6LjQiMENoRyxsO3QrRzVYUFVDdFl1UW5oM2ZvMCVOZnIsKXFQaUtzTjZDaXNjZDxmKGolZ25MMnJTMUU/dU9LOz1APTJQO2hPSmcvWzkrUlsxbE9RTGU1ZkRhTS1LR0ZLSVNbYy1kQS82ZEc+UTZKZ1NyaUZMSDZubWdSZGddNmZOXz1NVVlWWTYzcFt0Ikg7Vyc/bT1fJUxiZ09yY08oOD0tcDg6UEhLKWUsL2hHPHVUNihYckcnQFM3XSo+ZTE7PXAkYVA8ZEcsJkIiK2hSPFcqdSp1XUomUy1vNzw5TmMkMTRGKWRCTUM6XzRPcVJCTVRkTjkwRUp1KyhFNVA8J1tyVD11SzBpUF1WUUAnMzxxTT9cQkwsVFU1Yl8zKVBBY2g/Q1YwUE9PbC4pYj4xVytmblM7OUguLSVCN28tUzBKKllLP2tENlReTDpZNlFvQUo/OmQ2WjByJD9CKCdlL0RlLmU3W1gjPSIjSztNZENfaGhgLUMjdHEkaFVcOm8lblVucVQhaS9qa3FHWjRVXE4iSyxNJC9AZCJwSjtAL1QuKi5vLW9tVzcsci8pOCYhRTVxVkJOOzZHbXBnXllWWEkhQEA/RkZkI09sSU1lMUYiNmA0OElrRGhVX1lmL2ktIiM3UGlUNmgmYl9BazxXZDI9PFFAVG5tJDVOK3VyNj4kPEBuRGM3KTZEM0pVbygkU1lBMkkzcWhwPWwnIkVaa2Q2LyZGRCMpMT11JiZQOFI6VF0zRUdtLWEscFMuOV9eSSYjTEpILHB1O1k/Nk8iLTImIzxMLjJzY1VURTElTWhLLVc0UVNcdFo6JmgjWUs2alNAaVZNZyVqJURIaVJbO1toQUM5Nj9TZDAwS1JWPzBGTEkvIldrPDI8RENeKTVbVT0iSUtXaUByQDMyRnRyOnE9UllJdDA0TS1VJElBMyVuU1QjNVNPTShoWitSMF5wWjJvS2BBNDZmKisvXGg9NCdVR2A+ZTkhJkU9aGxzPTA1XFBqYWxKSmpMbjs9c2hgaiRaKS0uN3ErI2QmTkM4K2xWVE40b2VoZDBiLmhgXy9OOEtxKF8sLkwnc1UxJj1vIyhhTmpTPF9Raj0lOFM9UllSbU1fW1g7QFdQRyQrO0xXbVkqYG9VZTc4R1wxWHJDYSpXO11AXyZWQDtZTHRFWFNMaDZEWjNlQ11oWmolOFxEcGBINU8ta15Qb09gQVAiRjYtWDNzcWNLN1lHQVJBWixqNDs0YjFBIyUhJF1AcDA+PTtIXi9aWDZdIVFLNUUlU2RdPWlIaztFQGFHKGBpKnMvJiRGV01MY10xMUcwREd1LkMzOjAvc1kuWFl1Q2I0Ny8hYnFlW2dIMmVmcEdEc2VUajVzSGJNXVtJL2IpKE5yWzshOHJBJlRic1o+PD9nWiU1cm1kbkgxQks+OlRCXU8uOm5bKS1iMU5VSlhMUTlkRT1EXkxkUCJBYjhQX11XNSMsKm9FQS9aP0tdZ2Y/VmZENFknPTlhQzpbYFZJXVsxND1UOmxvLzxmO3JNRnMnaEY5R0FFJTBraXUiPjBVTCU8U2kpOXVDXSQmZEBVWzAsNmxnRyRcMVMoTzk7UVZDdXJxUj5IQEUvTmFCZXNYJD4kY0pvPCxRKy9rWT0jJF9IL29QTmovP3FQY1BRLkRJJVdtaStmRSM/QDNYOWYkLjlrXzUhTCdgVlUuMkVubzRjXTxkUm03YVRQRVY2UzYhMG91WUliRlshIjk+dVp0JVZ1b1gvPTFxaU1MdC4tcUtdJ0c6Qy5nMGVibFNPQlpldEJtIU8qUU9LIz1nMzE9MSVYXSZlLlphJEliXyNoKDwxR3NObyJYWGFHUjEybllxJkwrbkhrcmJFUWolXDNMQVMmbGJedEEhWExyRl8zRmkvVUkmKTkiPSlDKyRDWmY0Kl1WVm1cQlBfaz0oaS4tIkRxSU5cb0M7J2lXOkVROTYnZEFUazhyKDRlUWlaXkxQVUdIa3JsPiZbKEpeZ2lNcyJaZEEyXlldMTgkK1NZLkVlWjpNNz9aZUNATmVWMSslWjMhTVFxakZJcj9ORCc3Xl5MQjUoLDFyXXEwLDphbnI8ImRdYTlHZTtWZmxoV2JnKlhgQ29ARzVhMlhQQUomIyJfR2ExVGpdXnQwO2BCKmVCNTU0PGRAbktPOmEuSGFnIitMWUtlMj9fKXE9QiRfa3QhMG1kJ25LTlJRYmxpJj5GLTxLLU5FL3VwTUQtZlokUkBKLkMoMSdrallAWVRBckRST1E7YklibVNyKTlOOklgKGYkY2NVXzlaQ0dAJ1tsbCddRyprLElORTdVMVQ4WStwRSw7OFo1Y20tRVg4SmxBZ0grZTpPS29oPkNWLFwtYyowRCY8JkhsXHA1MnIxKm9VUzVrLF5oOTNuUjEkXCRHZjFiL3NKV0MsQ1BWYEwrczZsTCNDOlIuSFl1NitVbXVeP1pnazFlc21rRGNoZ1xIUyQ+bCRFR24kUFBSSzJPWy9GKF5HbUgubDJ+PmVuZHN0cmVhbQplbmRvYmoKeHJlZgowIDEwCjAwMDAwMDAwMDAgNjU1MzUgZiAKMDAwMDAwMDA2MSAwMDAwMCBuIAowMDAwMDAwMTEyIDAwMDAwIG4gCjAwMDAwMDAyMTkgMDAwMDAgbiAKMDAwMDAwMDMzMSAwMDAwMCBuIAowMDAwMDAwNDQ2IDAwMDAwIG4gCjAwMDAwMDA2NDkgMDAwMDAgbiAKMDAwMDAwMDcxNyAwMDAwMCBuIAowMDAwMDAxMDEwIDAwMDAwIG4gCjAwMDAwMDEwNjkgMDAwMDAgbiAKdHJhaWxlcgo8PAovSUQgCls8NThkYjQzYWE3NTUxZDY5YzFkMzcxYjhlMzgwZjYwM2U+PDU4ZGI0M2FhNzU1MWQ2OWMxZDM3MWI4ZTM4MGY2MDNlPl0KJSBSZXBvcnRMYWIgZ2VuZXJhdGVkIFBERiBkb2N1bWVudCAtLSBkaWdlc3QgKG9wZW5zb3VyY2UpCgovSW5mbyA3IDAgUgovUm9vdCA2IDAgUgovU2l6ZSAxMAo+PgpzdGFydHhyZWYKNDI1NAolJUVPRgo=" download>Télécharger mon CV</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap" id="top">
+
+  <!-- Accueil -->
+  <div class="hero">
+    <h1>Mohamed EL MEKAOUI</h1>
+    <p class="role">Développement logiciel · Systèmes d'Information</p>
+    <p class="school">Étudiant ingénieur en 2<sup>e</sup> année du cycle ingénieur à l'ESIR, Rennes (2024–2028)</p>
+    <div>
+      <span class="status">Je recherche un stage de développement logiciel de 3 mois à partir de juin 2027 — mobile dans toute la France.</span>
+    </div>
+    <div class="hero-actions">
+      <a class="btn btn-solid" href="#projets">Voir mes projets</a>
+      <a class="btn btn-ghost" href="data:application/octet-stream;base64,JVBERi0xLjQKJZOMi54gUmVwb3J0TGFiIEdlbmVyYXRlZCBQREYgZG9jdW1lbnQgKG9wZW5zb3VyY2UpCjEgMCBvYmoKPDwKL0YxIDIgMCBSIC9GMiAzIDAgUiAvRjMgNCAwIFIKPj4KZW5kb2JqCjIgMCBvYmoKPDwKL0Jhc2VGb250IC9IZWx2ZXRpY2EgL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcgL05hbWUgL0YxIC9TdWJ0eXBlIC9UeXBlMSAvVHlwZSAvRm9udAo+PgplbmRvYmoKMyAwIG9iago8PAovQmFzZUZvbnQgL0hlbHZldGljYS1Cb2xkIC9FbmNvZGluZyAvV2luQW5zaUVuY29kaW5nIC9OYW1lIC9GMiAvU3VidHlwZSAvVHlwZTEgL1R5cGUgL0ZvbnQKPj4KZW5kb2JqCjQgMCBvYmoKPDwKL0Jhc2VGb250IC9IZWx2ZXRpY2EtT2JsaXF1ZSAvRW5jb2RpbmcgL1dpbkFuc2lFbmNvZGluZyAvTmFtZSAvRjMgL1N1YnR5cGUgL1R5cGUxIC9UeXBlIC9Gb250Cj4+CmVuZG9iago1IDAgb2JqCjw8Ci9Db250ZW50cyA5IDAgUiAvTWVkaWFCb3ggWyAwIDAgNTk1LjI3NTYgODQxLjg4OTggXSAvUGFyZW50IDggMCBSIC9SZXNvdXJjZXMgPDwKL0ZvbnQgMSAwIFIgL1Byb2NTZXQgWyAvUERGIC9UZXh0IC9JbWFnZUIgL0ltYWdlQyAvSW1hZ2VJIF0KPj4gL1JvdGF0ZSAwIC9UcmFucyA8PAoKPj4gCiAgL1R5cGUgL1BhZ2UKPj4KZW5kb2JqCjYgMCBvYmoKPDwKL1BhZ2VNb2RlIC9Vc2VOb25lIC9QYWdlcyA4IDAgUiAvVHlwZSAvQ2F0YWxvZwo+PgplbmRvYmoKNyAwIG9iago8PAovQXV0aG9yIChNb2hhbWVkIEVMIE1FS0FPVUkpIC9DcmVhdGlvbkRhdGUgKEQ6MjAyNjExMjEwNzQwMTErMDEnMDAnKSAvQ3JlYXRvciAoXCh1bnNwZWNpZmllZFwpKSAvS2V5d29yZHMgKCkgL01vZERhdGUgKEQ6MjAyNjExMjEwNzQwMTErMDEnMDAnKSAvUHJvZHVjZXIgKFJlcG9ydExhYiBQREYgTGlicmFyeSAtIFwob3BlbnNvdXJjZVwpKSAKICAvU3ViamVjdCAoXCh1bnNwZWNpZmllZFwpKSAvVGl0bGUgKENWIE1vaGFtZWQgRUwgTUVLQU9VSSkgL1RyYXBwZWQgL0ZhbHNlCj4+CmVuZG9iago4IDAgb2JqCjw8Ci9Db3VudCAxIC9LaWRzIFsgNSAwIFIgXSAvVHlwZSAvUGFnZXMKPj4KZW5kb2JqCjkgMCBvYmoKPDwKL0ZpbHRlciBbIC9BU0NJSTg1RGVjb2RlIC9GbGF0ZURlY29kZSBdIC9MZW5ndGggMzA5NAo+PgpzdHJlYW0KR2IhO2Y9YS9SbCZxODAxVygxTDsuLCQhOGRwUytKNENDNVRoX1BlVVpwYnBYLz8nQDksWDFEanBvLyFbI1RJUz9rMD41VCoiWWhnL1JNTSs8PzIwYHIsJkMpNW0yLWhMUUE+OyhhZElGXzY+ZDlqcUFUVmhnS2lhPCVEZm1GLFtpZiNMQms5OlxSJE0qZSgzVDApa0UsZSwtUl5wbi9MYk02QSUtXXUqIW1qcW5LZyZLWT9eWS8pPlZLKzlsMGF1XkMvLSZhMCkqVzo+KEVCU2Fdbzwwa0ojRyhlc0orI0dVbTskPiJJKWt0VSlgNG5pbFcsKWE3bTIqO144W05bIk0vMW8yLDI9bTtPZjloYSZxcTAtNCk+J1Ipa051IjpucExSTj0iMl9vUmI0P3VaXDpHWFk4ODYtRktdLjFiaWtNTFQnVitqOFByRzdgWU9nPygxI2E3V15QaG0qJ2kkKD5GTVkza1RmaF5ISCZeYUo9I09xc25kPSQyTGdlcTtHOWA7cVdHTm9aMCo7KDw+b09OU2oyJkAtVnU/Z3RuO15dZ0pEUTNYaSVRQjBAOikiRHIiJFBFNDc+IiksPD1zLCY7KmZCYGEwMUFRUTVEbzVHZTFCc1pXYm80LkZVMXRoZ0Rlc1lsXUE+LShGX05GPik0ImhTYnRzIz07RT5HOVdiZU4uTyRDOCM7VFdXMyM9QCxsbmsvallJYHEuQl9GbkMrMjZkKFpiOCcqcVhjQ0A+PTtsbklFZi0oJ0FuSHNnVWs0N0NBaDUvZ1gqU09oMGkhJFFzaXJQXT1iXjcqRF4hQiRzZlcyYywmLVVFRzBGS2RBLmRVYTEtNjRybnJSLEcyLUsoUXFAR1ZZLGhAajZDWF0nSy1UNiM7WExLYmEyJF1Fbm0pOjQ2XCcra21JNCY3Jigtam4zPVpnKSolXXRAK0E2Qk4rQlUlNEgzTFgxTipiXVtjWDk9Tyk5OTNBTj5NXGgjQERhLE9HZ1cjNk9QVm47SmoxRCpEazVDJSUiR0QjakhdVWVkUjgkLHEyRnFhJjsmWHBWP0NzVUtOXDksbF1pUjg5anIuLkRVUEojRDc4JEtJbE4sM1JAOSYpKEVNVDRGZyhtamY9V2xeLmBMPDdcOGlINTNUZzFPamlfRzE6Wk1IIy4lS2VbVEYrYypgUDdwQDU7RF1OPWRoaDdqRjcsYiMwK01VbWhtLj8ibGFXZV42RFhhbjdMak85Y242OUo2XUhvP21BUTFrWVU7cSJdPThqYSZjTCtIJ2BEbU4sMTxmXDM4Xl06YUplaVlAbj9LMExFUHAuNSJlZkNFZWkyWF1zYEVtcyw7SVJmSj1paCRgJzNsbDcqWF9fcVZxK2pwLGs8Kik9UDVkOTlyW2JTUSdhcjRKcSVRNz5jRlZaX29OTjQ1ITpoMGUiUz9TTz5HNSc7JDVQcG5qYihfZC9BYTdhS101OURicF4yM2FONW9PbTAoTlhNTC8xPTApY0UtI05qdDBBaDEocStTJXNgTV9McD1uWj9KRmpVUlw1XGIpb09kWSFDNE1dWSpsLTs6TiopbF49XkpQKWNHZGkoL0s8ZiZcKFZdXkZqYmVmLS9WNSQ6LjQiMENoRyxsO3QrRzVYUFVDdFl1UW5oM2ZvMCVOZnIsKXFQaUtzTjZDaXNjZDxmKGolZ25MMnJTMUU/dU9LOz1APTJQO2hPSmcvWzkrUlsxbE9RTGU1ZkRhTS1LR0ZLSVNbYy1kQS82ZEc+UTZKZ1NyaUZMSDZubWdSZGddNmZOXz1NVVlWWTYzcFt0Ikg7Vyc/bT1fJUxiZ09yY08oOD0tcDg6UEhLKWUsL2hHPHVUNihYckcnQFM3XSo+ZTE7PXAkYVA8ZEcsJkIiK2hSPFcqdSp1XUomUy1vNzw5TmMkMTRGKWRCTUM6XzRPcVJCTVRkTjkwRUp1KyhFNVA8J1tyVD11SzBpUF1WUUAnMzxxTT9cQkwsVFU1Yl8zKVBBY2g/Q1YwUE9PbC4pYj4xVytmblM7OUguLSVCN28tUzBKKllLP2tENlReTDpZNlFvQUo/OmQ2WjByJD9CKCdlL0RlLmU3W1gjPSIjSztNZENfaGhgLUMjdHEkaFVcOm8lblVucVQhaS9qa3FHWjRVXE4iSyxNJC9AZCJwSjtAL1QuKi5vLW9tVzcsci8pOCYhRTVxVkJOOzZHbXBnXllWWEkhQEA/RkZkI09sSU1lMUYiNmA0OElrRGhVX1lmL2ktIiM3UGlUNmgmYl9BazxXZDI9PFFAVG5tJDVOK3VyNj4kPEBuRGM3KTZEM0pVbygkU1lBMkkzcWhwPWwnIkVaa2Q2LyZGRCMpMT11JiZQOFI6VF0zRUdtLWEscFMuOV9eSSYjTEpILHB1O1k/Nk8iLTImIzxMLjJzY1VURTElTWhLLVc0UVNcdFo6JmgjWUs2alNAaVZNZyVqJURIaVJbO1toQUM5Nj9TZDAwS1JWPzBGTEkvIldrPDI8RENeKTVbVT0iSUtXaUByQDMyRnRyOnE9UllJdDA0TS1VJElBMyVuU1QjNVNPTShoWitSMF5wWjJvS2BBNDZmKisvXGg9NCdVR2A+ZTkhJkU9aGxzPTA1XFBqYWxKSmpMbjs9c2hgaiRaKS0uN3ErI2QmTkM4K2xWVE40b2VoZDBiLmhgXy9OOEtxKF8sLkwnc1UxJj1vIyhhTmpTPF9Raj0lOFM9UllSbU1fW1g7QFdQRyQrO0xXbVkqYG9VZTc4R1wxWHJDYSpXO11AXyZWQDtZTHRFWFNMaDZEWjNlQ11oWmolOFxEcGBINU8ta15Qb09gQVAiRjYtWDNzcWNLN1lHQVJBWixqNDs0YjFBIyUhJF1AcDA+PTtIXi9aWDZdIVFLNUUlU2RdPWlIaztFQGFHKGBpKnMvJiRGV01MY10xMUcwREd1LkMzOjAvc1kuWFl1Q2I0Ny8hYnFlW2dIMmVmcEdEc2VUajVzSGJNXVtJL2IpKE5yWzshOHJBJlRic1o+PD9nWiU1cm1kbkgxQks+OlRCXU8uOm5bKS1iMU5VSlhMUTlkRT1EXkxkUCJBYjhQX11XNSMsKm9FQS9aP0tdZ2Y/VmZENFknPTlhQzpbYFZJXVsxND1UOmxvLzxmO3JNRnMnaEY5R0FFJTBraXUiPjBVTCU8U2kpOXVDXSQmZEBVWzAsNmxnRyRcMVMoTzk7UVZDdXJxUj5IQEUvTmFCZXNYJD4kY0pvPCxRKy9rWT0jJF9IL29QTmovP3FQY1BRLkRJJVdtaStmRSM/QDNYOWYkLjlrXzUhTCdgVlUuMkVubzRjXTxkUm03YVRQRVY2UzYhMG91WUliRlshIjk+dVp0JVZ1b1gvPTFxaU1MdC4tcUtdJ0c6Qy5nMGVibFNPQlpldEJtIU8qUU9LIz1nMzE9MSVYXSZlLlphJEliXyNoKDwxR3NObyJYWGFHUjEybllxJkwrbkhrcmJFUWolXDNMQVMmbGJedEEhWExyRl8zRmkvVUkmKTkiPSlDKyRDWmY0Kl1WVm1cQlBfaz0oaS4tIkRxSU5cb0M7J2lXOkVROTYnZEFUazhyKDRlUWlaXkxQVUdIa3JsPiZbKEpeZ2lNcyJaZEEyXlldMTgkK1NZLkVlWjpNNz9aZUNATmVWMSslWjMhTVFxakZJcj9ORCc3Xl5MQjUoLDFyXXEwLDphbnI8ImRdYTlHZTtWZmxoV2JnKlhgQ29ARzVhMlhQQUomIyJfR2ExVGpdXnQwO2BCKmVCNTU0PGRAbktPOmEuSGFnIitMWUtlMj9fKXE9QiRfa3QhMG1kJ25LTlJRYmxpJj5GLTxLLU5FL3VwTUQtZlokUkBKLkMoMSdrallAWVRBckRST1E7YklibVNyKTlOOklgKGYkY2NVXzlaQ0dAJ1tsbCddRyprLElORTdVMVQ4WStwRSw7OFo1Y20tRVg4SmxBZ0grZTpPS29oPkNWLFwtYyowRCY8JkhsXHA1MnIxKm9VUzVrLF5oOTNuUjEkXCRHZjFiL3NKV0MsQ1BWYEwrczZsTCNDOlIuSFl1NitVbXVeP1pnazFlc21rRGNoZ1xIUyQ+bCRFR24kUFBSSzJPWy9GKF5HbUgubDJ+PmVuZHN0cmVhbQplbmRvYmoKeHJlZgowIDEwCjAwMDAwMDAwMDAgNjU1MzUgZiAKMDAwMDAwMDA2MSAwMDAwMCBuIAowMDAwMDAwMTEyIDAwMDAwIG4gCjAwMDAwMDAyMTkgMDAwMDAgbiAKMDAwMDAwMDMzMSAwMDAwMCBuIAowMDAwMDAwNDQ2IDAwMDAwIG4gCjAwMDAwMDA2NDkgMDAwMDAgbiAKMDAwMDAwMDcxNyAwMDAwMCBuIAowMDAwMDAxMDEwIDAwMDAwIG4gCjAwMDAwMDEwNjkgMDAwMDAgbiAKdHJhaWxlcgo8PAovSUQgCls8NThkYjQzYWE3NTUxZDY5YzFkMzcxYjhlMzgwZjYwM2U+PDU4ZGI0M2FhNzU1MWQ2OWMxZDM3MWI4ZTM4MGY2MDNlPl0KJSBSZXBvcnRMYWIgZ2VuZXJhdGVkIFBERiBkb2N1bWVudCAtLSBkaWdlc3QgKG9wZW5zb3VyY2UpCgovSW5mbyA3IDAgUgovUm9vdCA2IDAgUgovU2l6ZSAxMAo+PgpzdGFydHhyZWYKNDI1NAolJUVPRgo=" download>Télécharger mon CV (PDF)</a>
+      <a class="btn btn-ghost" href="#contact">Me contacter</a>
+    </div>
+  </div>
+
+  <!-- À propos -->
+  <section id="a-propos">
+    <h2>À propos</h2>
+    <p>Je suis étudiant en 2<sup>e</sup> année du cycle ingénieur à l'ESIR (Rennes), en spécialité Systèmes d'Information. Je développe principalement en Java avec Spring Boot, et en JavaScript / TypeScript côté web. Je travaille aussi avec des bases de données PostgreSQL et MySQL, et j'utilise Git et Docker au quotidien dans mes projets.</p>
+    <p>À l'été 2025, j'ai fait un stage de développement à l'ONEE à Meknès (Maroc). Je cherche maintenant un stage de 3 mois à partir de juin 2027, en développement logiciel, et je suis mobile dans toute la France.</p>
+    <p class="muted">Langues : français bilingue (DELF B2), arabe (langue maternelle), anglais B2.</p>
+  </section>
+
+  <!-- Projets -->
+  <section id="projets">
+    <h2>Projets</h2>
+
+    <article class="project">
+      <div class="project-head">
+        <h3>AuraCity</h3>
+        <span class="ctx">Projet académique ESIR · en équipe</span>
+      </div>
+      <p>Plateforme cartographique immobilière sur Rennes : les annonces sont affichées sur une carte et peuvent être filtrées selon différents critères.</p>
+      <ul class="tags"><li>JavaScript</li><li>Supabase</li><li>OpenStreetMap</li><li>Git</li></ul>
+    </article>
+
+    <article class="project">
+      <div class="project-head">
+        <h3>Vérification et validation d'un projet existant</h3>
+        <span class="ctx">Projet académique ESIR · en binôme</span>
+      </div>
+      <p>Prise en main d'un projet Java existant, écriture de tests, analyse du code et rédaction d'un rapport final de vérification et validation.</p>
+      <ul class="tags"><li>Java</li><li>Tests</li><li>Git</li></ul>
+    </article>
+
+    <article class="project">
+      <div class="project-head">
+        <h3>Application web en TypeScript</h3>
+        <span class="ctx">Projet académique ESIR</span>
+      </div>
+      <p>Application web développée en TypeScript dans le cadre de ma formation à l'ESIR.</p>
+      <ul class="tags"><li>TypeScript</li><li>Git</li></ul>
+    </article>
+
+    <article class="project">
+      <div class="project-head">
+        <h3>Réservation de billets de cinéma — conception orientée objet</h3>
+        <span class="ctx">Projet académique ESIR</span>
+      </div>
+      <p>Modélisation UML complète d'un système de réservation de billets de cinéma : diagrammes de cas d'utilisation, de classes, de séquence et d'états.</p>
+      <ul class="tags"><li>UML</li><li>Conception orientée objet</li></ul>
+    </article>
+
+    <article class="project">
+      <div class="project-head">
+        <h3>Boîte aux lettres électronique connectée</h3>
+        <span class="ctx">Projet personnel</span>
+      </div>
+      <p>Boîte aux lettres connectée réalisée avec Arduino : le système détecte le dépôt de courrier et le signale électroniquement.</p>
+      <ul class="tags"><li>Arduino</li><li>Électronique</li></ul>
+    </article>
+  </section>
+
+  <!-- Expérience -->
+  <section id="experience">
+    <h2>Expérience</h2>
+    <div class="entry">
+      <div class="entry-head">
+        <h3>Stagiaire Développeur — ONEE</h3>
+        <span class="when">Juillet – août 2025</span>
+      </div>
+      <p class="where">Office National de l'Électricité et de l'Eau potable · Meknès, Maroc</p>
+      <ul>
+        <li>Participation au développement d'une base de données de gestion du parc informatique.</li>
+        <li>Consultation du SICOM (système d'information de l'ONEE).</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Compétences -->
+  <section id="competences">
+    <h2>Compétences</h2>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h3>Langages</h3>
+        <ul class="tags"><li>Java</li><li>Python</li><li>C</li><li>C++</li><li>JavaScript</li><li>TypeScript</li><li>HTML</li><li>CSS</li></ul>
+      </div>
+      <div class="skill-group">
+        <h3>Frameworks &amp; web</h3>
+        <ul class="tags"><li>Spring Boot</li><li>React</li><li>Angular</li><li>NestJS</li><li>FastAPI</li><li>Vue.js</li></ul>
+      </div>
+      <div class="skill-group">
+        <h3>Bases de données</h3>
+        <ul class="tags"><li>PostgreSQL</li><li>MySQL</li><li>SQLite</li></ul>
+      </div>
+      <div class="skill-group">
+        <h3>Outils &amp; méthodes</h3>
+        <ul class="tags"><li>Git</li><li>Docker</li><li>Linux</li><li>UML</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Formation & certifications -->
+  <section id="formation">
+    <h2>Formation</h2>
+    <ul class="plain-list">
+      <li><strong>ESIR — cycle ingénieur, Systèmes d'Information</strong><span class="sub">Rennes · 2024 – 2028</span></li>
+      <li><strong>Carnot Prépas — MP</strong><span class="sub">2022 – 2024</span></li>
+      <li><strong>Baccalauréat scientifique, filière Physique — mention Bien</strong><span class="sub">2021 – 2022</span></li>
+    </ul>
+  </section>
+
+  <section id="certifications">
+    <h2>Certifications</h2>
+    <ul class="cert-list">
+      <li><strong>Spring Framework for Java Development</strong><span class="org">SkillUp (Coursera) · juin 2026</span></li>
+      <li><strong>Open Source Software Development, Linux and Git — spécialisation</strong><span class="org">The Linux Foundation · novembre 2025</span></li>
+      <li><strong>Linux pour les développeurs</strong><span class="org">The Linux Foundation · novembre 2025</span></li>
+      <li><strong>Outils Linux pour les développeurs</strong><span class="org">The Linux Foundation · novembre 2025</span></li>
+      <li><strong>Méthodes de développement de logiciels libres</strong><span class="org">The Linux Foundation · novembre 2025</span></li>
+    </ul>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <div class="contact-box">
+      <p>Je suis basé à Rennes et mobile dans toute la France pour un stage de 3 mois à partir de juin 2027. Le plus simple pour me joindre :</p>
+      <div class="contact-row">
+        <a class="btn btn-solid" href="mailto:elmekaouim8@gmail.com">elmekaouim8@gmail.com</a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/melmekaoui" target="_blank" rel="noopener">Mon profil LinkedIn</a>
+        <a class="btn btn-ghost" href="data:application/octet-stream;base64,JVBERi0xLjQKJZOMi54gUmVwb3J0TGFiIEdlbmVyYXRlZCBQREYgZG9jdW1lbnQgKG9wZW5zb3VyY2UpCjEgMCBvYmoKPDwKL0YxIDIgMCBSIC9GMiAzIDAgUiAvRjMgNCAwIFIKPj4KZW5kb2JqCjIgMCBvYmoKPDwKL0Jhc2VGb250IC9IZWx2ZXRpY2EgL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcgL05hbWUgL0YxIC9TdWJ0eXBlIC9UeXBlMSAvVHlwZSAvRm9udAo+PgplbmRvYmoKMyAwIG9iago8PAovQmFzZUZvbnQgL0hlbHZldGljYS1Cb2xkIC9FbmNvZGluZyAvV2luQW5zaUVuY29kaW5nIC9OYW1lIC9GMiAvU3VidHlwZSAvVHlwZTEgL1R5cGUgL0ZvbnQKPj4KZW5kb2JqCjQgMCBvYmoKPDwKL0Jhc2VGb250IC9IZWx2ZXRpY2EtT2JsaXF1ZSAvRW5jb2RpbmcgL1dpbkFuc2lFbmNvZGluZyAvTmFtZSAvRjMgL1N1YnR5cGUgL1R5cGUxIC9UeXBlIC9Gb250Cj4+CmVuZG9iago1IDAgb2JqCjw8Ci9Db250ZW50cyA5IDAgUiAvTWVkaWFCb3ggWyAwIDAgNTk1LjI3NTYgODQxLjg4OTggXSAvUGFyZW50IDggMCBSIC9SZXNvdXJjZXMgPDwKL0ZvbnQgMSAwIFIgL1Byb2NTZXQgWyAvUERGIC9UZXh0IC9JbWFnZUIgL0ltYWdlQyAvSW1hZ2VJIF0KPj4gL1JvdGF0ZSAwIC9UcmFucyA8PAoKPj4gCiAgL1R5cGUgL1BhZ2UKPj4KZW5kb2JqCjYgMCBvYmoKPDwKL1BhZ2VNb2RlIC9Vc2VOb25lIC9QYWdlcyA4IDAgUiAvVHlwZSAvQ2F0YWxvZwo+PgplbmRvYmoKNyAwIG9iago8PAovQXV0aG9yIChNb2hhbWVkIEVMIE1FS0FPVUkpIC9DcmVhdGlvbkRhdGUgKEQ6MjAyNjExMjEwNzQwMTErMDEnMDAnKSAvQ3JlYXRvciAoXCh1bnNwZWNpZmllZFwpKSAvS2V5d29yZHMgKCkgL01vZERhdGUgKEQ6MjAyNjExMjEwNzQwMTErMDEnMDAnKSAvUHJvZHVjZXIgKFJlcG9ydExhYiBQREYgTGlicmFyeSAtIFwob3BlbnNvdXJjZVwpKSAKICAvU3ViamVjdCAoXCh1bnNwZWNpZmllZFwpKSAvVGl0bGUgKENWIE1vaGFtZWQgRUwgTUVLQU9VSSkgL1RyYXBwZWQgL0ZhbHNlCj4+CmVuZG9iago4IDAgb2JqCjw8Ci9Db3VudCAxIC9LaWRzIFsgNSAwIFIgXSAvVHlwZSAvUGFnZXMKPj4KZW5kb2JqCjkgMCBvYmoKPDwKL0ZpbHRlciBbIC9BU0NJSTg1RGVjb2RlIC9GbGF0ZURlY29kZSBdIC9MZW5ndGggMzA5NAo+PgpzdHJlYW0KR2IhO2Y9YS9SbCZxODAxVygxTDsuLCQhOGRwUytKNENDNVRoX1BlVVpwYnBYLz8nQDksWDFEanBvLyFbI1RJUz9rMD41VCoiWWhnL1JNTSs8PzIwYHIsJkMpNW0yLWhMUUE+OyhhZElGXzY+ZDlqcUFUVmhnS2lhPCVEZm1GLFtpZiNMQms5OlxSJE0qZSgzVDApa0UsZSwtUl5wbi9MYk02QSUtXXUqIW1qcW5LZyZLWT9eWS8pPlZLKzlsMGF1XkMvLSZhMCkqVzo+KEVCU2Fdbzwwa0ojRyhlc0orI0dVbTskPiJJKWt0VSlgNG5pbFcsKWE3bTIqO144W05bIk0vMW8yLDI9bTtPZjloYSZxcTAtNCk+J1Ipa051IjpucExSTj0iMl9vUmI0P3VaXDpHWFk4ODYtRktdLjFiaWtNTFQnVitqOFByRzdgWU9nPygxI2E3V15QaG0qJ2kkKD5GTVkza1RmaF5ISCZeYUo9I09xc25kPSQyTGdlcTtHOWA7cVdHTm9aMCo7KDw+b09OU2oyJkAtVnU/Z3RuO15dZ0pEUTNYaSVRQjBAOikiRHIiJFBFNDc+IiksPD1zLCY7KmZCYGEwMUFRUTVEbzVHZTFCc1pXYm80LkZVMXRoZ0Rlc1lsXUE+LShGX05GPik0ImhTYnRzIz07RT5HOVdiZU4uTyRDOCM7VFdXMyM9QCxsbmsvallJYHEuQl9GbkMrMjZkKFpiOCcqcVhjQ0A+PTtsbklFZi0oJ0FuSHNnVWs0N0NBaDUvZ1gqU09oMGkhJFFzaXJQXT1iXjcqRF4hQiRzZlcyYywmLVVFRzBGS2RBLmRVYTEtNjRybnJSLEcyLUsoUXFAR1ZZLGhAajZDWF0nSy1UNiM7WExLYmEyJF1Fbm0pOjQ2XCcra21JNCY3Jigtam4zPVpnKSolXXRAK0E2Qk4rQlUlNEgzTFgxTipiXVtjWDk9Tyk5OTNBTj5NXGgjQERhLE9HZ1cjNk9QVm47SmoxRCpEazVDJSUiR0QjakhdVWVkUjgkLHEyRnFhJjsmWHBWP0NzVUtOXDksbF1pUjg5anIuLkRVUEojRDc4JEtJbE4sM1JAOSYpKEVNVDRGZyhtamY9V2xeLmBMPDdcOGlINTNUZzFPamlfRzE6Wk1IIy4lS2VbVEYrYypgUDdwQDU7RF1OPWRoaDdqRjcsYiMwK01VbWhtLj8ibGFXZV42RFhhbjdMak85Y242OUo2XUhvP21BUTFrWVU7cSJdPThqYSZjTCtIJ2BEbU4sMTxmXDM4Xl06YUplaVlAbj9LMExFUHAuNSJlZkNFZWkyWF1zYEVtcyw7SVJmSj1paCRgJzNsbDcqWF9fcVZxK2pwLGs8Kik9UDVkOTlyW2JTUSdhcjRKcSVRNz5jRlZaX29OTjQ1ITpoMGUiUz9TTz5HNSc7JDVQcG5qYihfZC9BYTdhS101OURicF4yM2FONW9PbTAoTlhNTC8xPTApY0UtI05qdDBBaDEocStTJXNgTV9McD1uWj9KRmpVUlw1XGIpb09kWSFDNE1dWSpsLTs6TiopbF49XkpQKWNHZGkoL0s8ZiZcKFZdXkZqYmVmLS9WNSQ6LjQiMENoRyxsO3QrRzVYUFVDdFl1UW5oM2ZvMCVOZnIsKXFQaUtzTjZDaXNjZDxmKGolZ25MMnJTMUU/dU9LOz1APTJQO2hPSmcvWzkrUlsxbE9RTGU1ZkRhTS1LR0ZLSVNbYy1kQS82ZEc+UTZKZ1NyaUZMSDZubWdSZGddNmZOXz1NVVlWWTYzcFt0Ikg7Vyc/bT1fJUxiZ09yY08oOD0tcDg6UEhLKWUsL2hHPHVUNihYckcnQFM3XSo+ZTE7PXAkYVA8ZEcsJkIiK2hSPFcqdSp1XUomUy1vNzw5TmMkMTRGKWRCTUM6XzRPcVJCTVRkTjkwRUp1KyhFNVA8J1tyVD11SzBpUF1WUUAnMzxxTT9cQkwsVFU1Yl8zKVBBY2g/Q1YwUE9PbC4pYj4xVytmblM7OUguLSVCN28tUzBKKllLP2tENlReTDpZNlFvQUo/OmQ2WjByJD9CKCdlL0RlLmU3W1gjPSIjSztNZENfaGhgLUMjdHEkaFVcOm8lblVucVQhaS9qa3FHWjRVXE4iSyxNJC9AZCJwSjtAL1QuKi5vLW9tVzcsci8pOCYhRTVxVkJOOzZHbXBnXllWWEkhQEA/RkZkI09sSU1lMUYiNmA0OElrRGhVX1lmL2ktIiM3UGlUNmgmYl9BazxXZDI9PFFAVG5tJDVOK3VyNj4kPEBuRGM3KTZEM0pVbygkU1lBMkkzcWhwPWwnIkVaa2Q2LyZGRCMpMT11JiZQOFI6VF0zRUdtLWEscFMuOV9eSSYjTEpILHB1O1k/Nk8iLTImIzxMLjJzY1VURTElTWhLLVc0UVNcdFo6JmgjWUs2alNAaVZNZyVqJURIaVJbO1toQUM5Nj9TZDAwS1JWPzBGTEkvIldrPDI8RENeKTVbVT0iSUtXaUByQDMyRnRyOnE9UllJdDA0TS1VJElBMyVuU1QjNVNPTShoWitSMF5wWjJvS2BBNDZmKisvXGg9NCdVR2A+ZTkhJkU9aGxzPTA1XFBqYWxKSmpMbjs9c2hgaiRaKS0uN3ErI2QmTkM4K2xWVE40b2VoZDBiLmhgXy9OOEtxKF8sLkwnc1UxJj1vIyhhTmpTPF9Raj0lOFM9UllSbU1fW1g7QFdQRyQrO0xXbVkqYG9VZTc4R1wxWHJDYSpXO11AXyZWQDtZTHRFWFNMaDZEWjNlQ11oWmolOFxEcGBINU8ta15Qb09gQVAiRjYtWDNzcWNLN1lHQVJBWixqNDs0YjFBIyUhJF1AcDA+PTtIXi9aWDZdIVFLNUUlU2RdPWlIaztFQGFHKGBpKnMvJiRGV01MY10xMUcwREd1LkMzOjAvc1kuWFl1Q2I0Ny8hYnFlW2dIMmVmcEdEc2VUajVzSGJNXVtJL2IpKE5yWzshOHJBJlRic1o+PD9nWiU1cm1kbkgxQks+OlRCXU8uOm5bKS1iMU5VSlhMUTlkRT1EXkxkUCJBYjhQX11XNSMsKm9FQS9aP0tdZ2Y/VmZENFknPTlhQzpbYFZJXVsxND1UOmxvLzxmO3JNRnMnaEY5R0FFJTBraXUiPjBVTCU8U2kpOXVDXSQmZEBVWzAsNmxnRyRcMVMoTzk7UVZDdXJxUj5IQEUvTmFCZXNYJD4kY0pvPCxRKy9rWT0jJF9IL29QTmovP3FQY1BRLkRJJVdtaStmRSM/QDNYOWYkLjlrXzUhTCdgVlUuMkVubzRjXTxkUm03YVRQRVY2UzYhMG91WUliRlshIjk+dVp0JVZ1b1gvPTFxaU1MdC4tcUtdJ0c6Qy5nMGVibFNPQlpldEJtIU8qUU9LIz1nMzE9MSVYXSZlLlphJEliXyNoKDwxR3NObyJYWGFHUjEybllxJkwrbkhrcmJFUWolXDNMQVMmbGJedEEhWExyRl8zRmkvVUkmKTkiPSlDKyRDWmY0Kl1WVm1cQlBfaz0oaS4tIkRxSU5cb0M7J2lXOkVROTYnZEFUazhyKDRlUWlaXkxQVUdIa3JsPiZbKEpeZ2lNcyJaZEEyXlldMTgkK1NZLkVlWjpNNz9aZUNATmVWMSslWjMhTVFxakZJcj9ORCc3Xl5MQjUoLDFyXXEwLDphbnI8ImRdYTlHZTtWZmxoV2JnKlhgQ29ARzVhMlhQQUomIyJfR2ExVGpdXnQwO2BCKmVCNTU0PGRAbktPOmEuSGFnIitMWUtlMj9fKXE9QiRfa3QhMG1kJ25LTlJRYmxpJj5GLTxLLU5FL3VwTUQtZlokUkBKLkMoMSdrallAWVRBckRST1E7YklibVNyKTlOOklgKGYkY2NVXzlaQ0dAJ1tsbCddRyprLElORTdVMVQ4WStwRSw7OFo1Y20tRVg4SmxBZ0grZTpPS29oPkNWLFwtYyowRCY8JkhsXHA1MnIxKm9VUzVrLF5oOTNuUjEkXCRHZjFiL3NKV0MsQ1BWYEwrczZsTCNDOlIuSFl1NitVbXVeP1pnazFlc21rRGNoZ1xIUyQ+bCRFR24kUFBSSzJPWy9GKF5HbUgubDJ+PmVuZHN0cmVhbQplbmRvYmoKeHJlZgowIDEwCjAwMDAwMDAwMDAgNjU1MzUgZiAKMDAwMDAwMDA2MSAwMDAwMCBuIAowMDAwMDAwMTEyIDAwMDAwIG4gCjAwMDAwMDAyMTkgMDAwMDAgbiAKMDAwMDAwMDMzMSAwMDAwMCBuIAowMDAwMDAwNDQ2IDAwMDAwIG4gCjAwMDAwMDA2NDkgMDAwMDAgbiAKMDAwMDAwMDcxNyAwMDAwMCBuIAowMDAwMDAxMDEwIDAwMDAwIG4gCjAwMDAwMDEwNjkgMDAwMDAgbiAKdHJhaWxlcgo8PAovSUQgCls8NThkYjQzYWE3NTUxZDY5YzFkMzcxYjhlMzgwZjYwM2U+PDU4ZGI0M2FhNzU1MWQ2OWMxZDM3MWI4ZTM4MGY2MDNlPl0KJSBSZXBvcnRMYWIgZ2VuZXJhdGVkIFBERiBkb2N1bWVudCAtLSBkaWdlc3QgKG9wZW5zb3VyY2UpCgovSW5mbyA3IDAgUgovUm9vdCA2IDAgUgovU2l6ZSAxMAo+PgpzdGFydHhyZWYKNDI1NAolJUVPRgo=" download>Mon CV (PDF)</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Mohamed EL MEKAOUI — Rennes, France · <a href="mailto:elmekaouim8@gmail.com">elmekaouim8@gmail.com</a> · <a href="https://www.linkedin.com/in/melmekaoui" target="_blank" rel="noopener">LinkedIn</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
