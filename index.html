@@ -47,6 +47,13 @@
     padding:8px 14px; font-weight:700; margin-left:8px;
   }
   nav.main a.cv-link:hover{background:var(--accent2); text-decoration:none}
+  .lang-toggle{
+    font:inherit; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:13.5px; font-weight:700;
+    background:var(--surface); color:var(--accent2); border:1px solid var(--accent);
+    border-radius:8px; padding:8px 13px; margin-left:10px; cursor:pointer; min-height:36px;
+    transition:background .15s ease;
+  }
+  .lang-toggle:hover{background:var(--accent-soft)}
 
   /* ---------- Hero ---------- */
   .hero{
@@ -162,10 +169,12 @@
   .code-card code{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace; font-size:13.3px; line-height:1.75; color:#d7ddd7}
   .code-card .k{color:#ff7eb6}.code-card .s{color:#a5d6ff}.code-card .p{color:#7ee787}.code-card .c{color:#69737f}
 
-  /* Services */
+  /* Cartes (savoir-faire + soft skills) */
   .cards{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+  .cards-4{grid-template-columns:repeat(4,1fr)}
+  @media (max-width:1000px){ .cards-4{grid-template-columns:repeat(2,1fr)} }
   @media (max-width:900px){ .cards{grid-template-columns:repeat(2,1fr)} }
-  @media (max-width:600px){ .cards{grid-template-columns:1fr} }
+  @media (max-width:600px){ .cards,.cards-4{grid-template-columns:1fr} }
   .card{
     background:var(--surface); border:1px solid var(--line-soft); border-radius:var(--radius);
     padding:22px; transition:transform .16s ease, border-color .16s ease, box-shadow .16s ease;
@@ -273,13 +282,15 @@
   <div class="wrap top-inner">
     <a class="brand" href="#top">mohamed <span class="angle">&lt;el-mekaoui&gt;</span></a>
     <nav class="main" aria-label="Navigation principale">
-      <a href="#a-propos">À propos</a>
-      <a href="#savoir-faire">Savoir-faire</a>
-      <a href="#projets">Projets</a>
-      <a href="#parcours">Parcours</a>
-      <a href="#competences">Compétences</a>
+      <a href="#a-propos" data-i18n="nav_about">À propos</a>
+      <a href="#savoir-faire" data-i18n="nav_expertise">Savoir-faire</a>
+      <a href="#soft-skills">Soft skills</a>
+      <a href="#projets" data-i18n="nav_projects">Projets</a>
+      <a href="#parcours" data-i18n="nav_path">Parcours</a>
+      <a href="#competences" data-i18n="nav_skills">Compétences</a>
       <a href="#contact">Contact</a>
-      <a class="cv-link" href="data:application/octet-stream;base64,JVBERi0xLjQKJZOMi54gUmVwb3J0TGFiIEdlbmVyYXRlZCBQREYgZG9jdW1lbnQgKG9wZW5zb3VyY2UpCjEgMCBvYmoKPDwKL0YxIDIgMCBSIC9GMiAzIDAgUiAvRjMgNCAwIFIKPj4KZW5kb2JqCjIgMCBvYmoKPDwKL0Jhc2VGb250IC9IZWx2ZXRpY2EgL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcgL05hbWUgL0YxIC9TdWJ0eXBlIC9UeXBlMSAvVHlwZSAvRm9udAo+PgplbmRvYmoKMyAwIG9iago8PAovQmFzZUZvbnQgL0hlbHZldGljYS1Cb2xkIC9FbmNvZGluZyAvV2luQW5zaUVuY29kaW5nIC9OYW1lIC9GMiAvU3VidHlwZSAvVHlwZTEgL1R5cGUgL0ZvbnQKPj4KZW5kb2JqCjQgMCBvYmoKPDwKL0Jhc2VGb250IC9IZWx2ZXRpY2EtT2JsaXF1ZSAvRW5jb2RpbmcgL1dpbkFuc2lFbmNvZGluZyAvTmFtZSAvRjMgL1N1YnR5cGUgL1R5cGUxIC9UeXBlIC9Gb250Cj4+CmVuZG9iago1IDAgb2JqCjw8Ci9Db250ZW50cyA5IDAgUiAvTWVkaWFCb3ggWyAwIDAgNTk1LjI3NTYgODQxLjg4OTggXSAvUGFyZW50IDggMCBSIC9SZXNvdXJjZXMgPDwKL0ZvbnQgMSAwIFIgL1Byb2NTZXQgWyAvUERGIC9UZXh0IC9JbWFnZUIgL0ltYWdlQyAvSW1hZ2VJIF0KPj4gL1JvdGF0ZSAwIC9UcmFucyA8PAoKPj4gCiAgL1R5cGUgL1BhZ2UKPj4KZW5kb2JqCjYgMCBvYmoKPDwKL1BhZ2VNb2RlIC9Vc2VOb25lIC9QYWdlcyA4IDAgUiAvVHlwZSAvQ2F0YWxvZwo+PgplbmRvYmoKNyAwIG9iago8PAovQXV0aG9yIChNb2hhbWVkIEVMIE1FS0FPVUkpIC9DcmVhdGlvbkRhdGUgKEQ6MjAyNjExMjEwNzU5MDMrMDEnMDAnKSAvQ3JlYXRvciAoXCh1bnNwZWNpZmllZFwpKSAvS2V5d29yZHMgKCkgL01vZERhdGUgKEQ6MjAyNjExMjEwNzU5MDMrMDEnMDAnKSAvUHJvZHVjZXIgKFJlcG9ydExhYiBQREYgTGlicmFyeSAtIFwob3BlbnNvdXJjZVwpKSAKICAvU3ViamVjdCAoXCh1bnNwZWNpZmllZFwpKSAvVGl0bGUgKENWIE1vaGFtZWQgRUwgTUVLQU9VSSkgL1RyYXBwZWQgL0ZhbHNlCj4+CmVuZG9iago4IDAgb2JqCjw8Ci9Db3VudCAxIC9LaWRzIFsgNSAwIFIgXSAvVHlwZSAvUGFnZXMKPj4KZW5kb2JqCjkgMCBvYmoKPDwKL0ZpbHRlciBbIC9BU0NJSTg1RGVjb2RlIC9GbGF0ZURlY29kZSBdIC9MZW5ndGggMzE1MAo+PgpzdHJlYW0KR2IhO2Y+QmVkbCZxODAxVyg0LiUnXHJxPD4pW0hRI0FoR0IzVyRUYixNS1k7OFpoMkNpY0Y4JkRjUStUWWVjVzhBaUdQWyp0Vi5qZV5ucz5XW1w1OnBnXjhbSUwnbUpMXEdFYyhhZElGXnAjWzhqcUFUVmhnQmNcUFVsLW1qcXJOVSVwbVQxNE1CcTpwW0RaZUdPXl8hUmJrTF9VQmQ3SFIucSNPb2MpXThXL24yaypvW2JZaSM0X3AyIUJKODw4T3BCWUAnMjxsMC1JMGpkNUxBUiInaGNeWmIlMXBwOUY6XCQpM1pvOjk0NlpwP01GNGwsQ1VrLDhOR2M4UlZlUTlhJVFWNUM0UDhyRClPalZTcFhhPmk9LSFZYCpbXj5LI0M5W2VXSkFKZVJhJmhNMTUqM0VwaCxcUydWK1E8O086W2ZJLTMyQEVybytwPz86L2NQaEU4NyVDaV1EPGoyYU9iWWNhQ0dWaWhOU20raG4lQFx0J2Q8VUNkSG83aEpQL0UwZGBMa0NxRVo+YCZPI0BTbUsjYlZLXzBXdHRVQm1qbmlPMGAjMSY/c0AlM24vMmEnSWBHdE9fVlcmWitWVEZoYjdMOU4sLmNlYiZeZkEtLCdrP14kZlVQSGdXaXU1XCtyb1IuQmlAU1NyMDxJKVYwcCdbNyVwXk41SyRjXUZxa0M+REpSbFI3UVEjZjNDXk9sPydGZWUxKzhYOj1YWHVFPionVmdtP0VDOCIjSWRHLE5gKEkjWDRtYVgiS1xKV1RAJV5UXl4+LnEnIXBOVC5QI2heW0s4biRxTlhUSy1BL0hrV0oyNkVwPk1jKlVeaGhaUFZwXDNGL1VyRi5FNzFwP0o1Xjg7biMwTTVgVlh0UyxAUE5OWyU0XCtoZyNPYnVnNl8hK3ItTEZwalNrRmhZJU8wODZxQio7PVc/ZS8qXGxxbSRCVGtCUWQsRlhGamZaMUAkblI6WSRkUVQncFgoS1pkdUJXOCJGMCUqXSVvZz46NWNTZTg3UGljJFBuUFc/R1l0bFYmK0khO2NxRktgbUtjPjY6UCMoS3MvLSQmRnVkLFI+K2wnOFtaVipZdCM4S0VIcmNFT2hVIXBfYmQ6N1M9bkFOLCVcMy0kVHRJUlJlX2VyWmhPKGdRa3FFQCFtSyElMFNuOypebGc8VG4yKjUhT1s8bSVJQy5pZj46NGdsSCVQcUNua0FOQjVvMl9CTi03Rk5yWitja1FyUFVtYDx0IUU1V0s4VFA6QnRLK0M4QjU3T1owPS0uNTpUW2lgdS4hXyhWaGQ5N0JNaihbKCEvVTJNI11jcTZcTyJRMF4pOWJVZzpEYCc7P1VoQDtaSWtJVComLVklMFE0KUlDaCkhLyg5SjImJ0wiWGRnNWBickRXPm9QWWVBbUdXLCZ1VWNZZ2tjTEE6TiFdLCdzSVsnPlpAcyZnUEBOKDlwc25pc0xyXk4tSypgVmZAQjUiM2tTWlNtJUk/Nl8kQTYvRTkwIy8rQyFMMjBmJ0siNyxCZyMvazYpZl4hamR1USJuOSRtZko6NnBISFlFPFk3XC1vLyVpXC1HJT9tJjUlQ2NLdVg3KSRsJCZZcCsiXj8nTD1nYG5UWlFZbVtFXGhGXm5yaEJqLmE8aWg7TkM7UC0/XE1EM0JuSUEsYi5zSilWNGRka0xeIU9QJDpoZzhbOEdHWylRRHArJlMxTVUnZ1NxQidMPm9tbis6aExEb1wpWFQlWWpDPFtTXGxRJENGNCVEcCdCNj1JYjU2REtMQ0woU0FoOTk/YiQyaDM7VystJ0hgKDZjIjdec1FFXio+dDAnT0soImo2NG5VcSNmU1xjZTU2OCRwMmllKk0lQjsuO0doPD45dSxJa0JwO1slJysnRiFnZnBiJlNyNF5Wa3BdS1YnLExqbkA8a29EVWtRPUVdMEJLUmQlSmRAPzUqRGNkJCJVTm4ydGg/Km5dbGolMzlXVVxtJCk4M20nYnBuRGs8Pi5cWnBXTF5UXW0pZ1tgWighIkI/JVNLalRJM1UpP2NtX0IpQ2wwZGU/cW50J1lpYGxKSTNeaiI0bydnVVxBSVdvPihTKzUxcC1gUGluJE05LiYvVTBaOHVZcSoial4kMFxGZ103ci9XaDEoOTtFK2gtSyJZSnMqQygybVE3T2AhKXFyKSI9KXEuU1YvNCg8JzZGN0xqQGFyakw0Omg5PFNqJztnPmorSiI2PT5XZGA6MDttOmBXSURhJ3I8JDQnLlAwLycpPDdTQjBLNnApcShhaC5aZGlUbXM1OGM/TCc/dCFwK28+P0huLFZIImBPKDJzTC9qKEdZMlkzPzhsbTUqJTMtSSsiIVcqIV1LKHFwKFBoZDJTM0djRSl0ajxtJG8kIjxEaytuZUJNN0gjMCdwblpTbmltVWQhNCY7QF8uNidgNEQ1LEdpSCxZcVdARVNJYm1mNiIyKyNDQ201ZidcNVNBPCwyQSxRa1JtTFBeLkpVW3NqTTw6LlA2YmJKPSxFMVRkLFg9Qm0wNmlsJm5PLVNgMSYkLGxYWFxtXWBkY0YuamlSXFYoVmxhNjsjRmxVTEQ7MCJKZElYaClrJTc/XztPYzNyQSomY2RTbXEtPG02T3VaMCltKkNOOz5NMGZsRTQzME1IPk4jakBfRGAsXSpFQ2RJaEpZUDNBaFFEbURURzoqbGZjYVFBTUApOGw6amRyYzZTaiY1KExNX0JtPD85Oz03OSRGSVcoJS9uT105aT49JzNGIyYmQ1hIYkNsI2FEVUJZQj1STGAwaTojYz83NXNAXyplcy8pLms7JTtvS2psK0BxJWIiamNYTGRxOHRRWDhVN1ZAbXM6dHUtZTFaVE1dKmFMWT1wJlMtQko8RV82O3MoS0A3UFImMyVITmlXMGUtQnBSaC9RNyk8Yio2Rk5qPWdRNys8IS0qI1NpMTxmP0ZXaUFYVGhfJ09LOD9GYkIvP11bTHMhXzxZdVUjKWtXc1I+Y1FHKz5HJCNmZFhcL0NZckErKidcJjtwS1NHaE06XEBDYWVxVG8lMXBmPylgTFVEQW1DNCVyaCMlRE0qRyovUVEual9vT0hGIjk0c0I2WWBgU14yYmBjIWxoRWtXK0NzOV9FPVtwaFleTVBqQiYianEuW1ZdcTA8ZkkpVFBhb1c2PWxnaWowNEhOcUs7bjE7WDNJdW9sZmhlQF46XF5pV19CbyUnLDA5OlteRkJMZT9BRWhINitqMywwdDkkY0RqXkUidVErPlM+MyopRyI4KVQsXjRTM05ORFBDPEB0MT5RZy9PPiRkRSwrIS9cJyMyYGBORCojb1w0UW9cUU9sPzInZCpcOUA+STwsYHJNP1ohRD9QXi8/Q0RWVVZfcUNIKmVKXlE7SG5GM2A1ZyI2aElJLE8vSSpkTCw2XkMrcV9uXE1dYCU2PmxHOlhGTSgsPCUiUic5NmtFW1l0Mk8qSnUkJ24kRiE7LiVSY01pPU9LPGMuJCNnXFhyPVYrIyRDNzhwKXM7NnJhQURMbT1Mcl8xVSRONTROMjA7PzljK01WRG9LTVEnKiRUJWZgYjI8Z0wtZDs8Zl5sIk86Yjk2SSxqV2FxLkcxRypLUzUjWDZrNypFMT4lPW1tYGdBUUI0KDAoNmNjOVxZVG8oP1ApSGlyPzJdQihvSkBxRTZAIUR0UUdGQDUwJFY2LWVsNyNlR1Y9R3I6ZidFbDxkWyhmRSo2TENbKjckKU9jY15tQHFuKXUiY2hqLTNIV1U7YDdfZkU5NjVEOD0ycWBDRTRuPmBBamtLdUVIX2s+XktkdGhyO3Q/KTMoKGVJJTFSVWFFW0lAO0kkYj1ZZ3A9J1B0cmc9YnFLUWVqN0BbJS1zQlkpWUw2UWxqNXJXK2xdbz0vNTNTOjFALlsnQktpJWZDJ1lWTV1CTWIjTEhSSSs0MjgmPSEyVi5ZVSw9J2Y1Y0NGTDFXIiVkdGBzTWlYdXBySic7IW4hM2tMWWFmLiNbbGwpMzxnX0N0TlJmU1pUOGs3MkUrMSJyVFtuN0NzJ2pNLWhfcmRHJGtnIzBxbUhtImcnbVF0Oks2bDVAXXNHYyoiWF84KXBXSmdsJDsoXDRVVT5TSGMxI0gwdSJkU2kpREcuTW4sOmlpXCxCUF1KKW1DcWI6TCptMkJWOEFrTm5JazIrMStbYDMsV2duXkNaNFYublVyImpBYkApV34+ZW5kc3RyZWFtCmVuZG9iagp4cmVmCjAgMTAKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDYxIDAwMDAwIG4gCjAwMDAwMDAxMTIgMDAwMDAgbiAKMDAwMDAwMDIxOSAwMDAwMCBuIAowMDAwMDAwMzMxIDAwMDAwIG4gCjAwMDAwMDA0NDYgMDAwMDAgbiAKMDAwMDAwMDY0OSAwMDAwMCBuIAowMDAwMDAwNzE3IDAwMDAwIG4gCjAwMDAwMDEwMTAgMDAwMDAgbiAKMDAwMDAwMTA2OSAwMDAwMCBuIAp0cmFpbGVyCjw8Ci9JRCAKWzxjYTMxNWVhODhlMjE2YWM4M2YxNmUyYzlhZWU0MjgyNj48Y2EzMTVlYTg4ZTIxNmFjODNmMTZlMmM5YWVlNDI4MjY+XQolIFJlcG9ydExhYiBnZW5lcmF0ZWQgUERGIGRvY3VtZW50IC0tIGRpZ2VzdCAob3BlbnNvdXJjZSkKCi9JbmZvIDcgMCBSCi9Sb290IDYgMCBSCi9TaXplIDEwCj4+CnN0YXJ0eHJlZgo0MzEwCiUlRU9GCg==" download>Mon CV</a>
+      <a class="cv-link" href="data:application/octet-stream;base64,JVBERi0xLjQKJZOMi54gUmVwb3J0TGFiIEdlbmVyYXRlZCBQREYgZG9jdW1lbnQgKG9wZW5zb3VyY2UpCjEgMCBvYmoKPDwKL0YxIDIgMCBSIC9GMiAzIDAgUiAvRjMgNCAwIFIKPj4KZW5kb2JqCjIgMCBvYmoKPDwKL0Jhc2VGb250IC9IZWx2ZXRpY2EgL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcgL05hbWUgL0YxIC9TdWJ0eXBlIC9UeXBlMSAvVHlwZSAvRm9udAo+PgplbmRvYmoKMyAwIG9iago8PAovQmFzZUZvbnQgL0hlbHZldGljYS1Cb2xkIC9FbmNvZGluZyAvV2luQW5zaUVuY29kaW5nIC9OYW1lIC9GMiAvU3VidHlwZSAvVHlwZTEgL1R5cGUgL0ZvbnQKPj4KZW5kb2JqCjQgMCBvYmoKPDwKL0Jhc2VGb250IC9IZWx2ZXRpY2EtT2JsaXF1ZSAvRW5jb2RpbmcgL1dpbkFuc2lFbmNvZGluZyAvTmFtZSAvRjMgL1N1YnR5cGUgL1R5cGUxIC9UeXBlIC9Gb250Cj4+CmVuZG9iago1IDAgb2JqCjw8Ci9Db250ZW50cyA5IDAgUiAvTWVkaWFCb3ggWyAwIDAgNTk1LjI3NTYgODQxLjg4OTggXSAvUGFyZW50IDggMCBSIC9SZXNvdXJjZXMgPDwKL0ZvbnQgMSAwIFIgL1Byb2NTZXQgWyAvUERGIC9UZXh0IC9JbWFnZUIgL0ltYWdlQyAvSW1hZ2VJIF0KPj4gL1JvdGF0ZSAwIC9UcmFucyA8PAoKPj4gCiAgL1R5cGUgL1BhZ2UKPj4KZW5kb2JqCjYgMCBvYmoKPDwKL1BhZ2VNb2RlIC9Vc2VOb25lIC9QYWdlcyA4IDAgUiAvVHlwZSAvQ2F0YWxvZwo+PgplbmRvYmoKNyAwIG9iago8PAovQXV0aG9yIChNb2hhbWVkIEVMIE1FS0FPVUkpIC9DcmVhdGlvbkRhdGUgKEQ6MjAyNjExMjEwNzU5MDMrMDEnMDAnKSAvQ3JlYXRvciAoXCh1bnNwZWNpZmllZFwpKSAvS2V5d29yZHMgKCkgL01vZERhdGUgKEQ6MjAyNjExMjEwNzU5MDMrMDEnMDAnKSAvUHJvZHVjZXIgKFJlcG9ydExhYiBQREYgTGlicmFyeSAtIFwob3BlbnNvdXJjZVwpKSAKICAvU3ViamVjdCAoXCh1bnNwZWNpZmllZFwpKSAvVGl0bGUgKENWIE1vaGFtZWQgRUwgTUVLQU9VSSkgL1RyYXBwZWQgL0ZhbHNlCj4+CmVuZG9iago4IDAgb2JqCjw8Ci9Db3VudCAxIC9LaWRzIFsgNSAwIFIgXSAvVHlwZSAvUGFnZXMKPj4KZW5kb2JqCjkgMCBvYmoKPDwKL0ZpbHRlciBbIC9BU0NJSTg1RGVjb2RlIC9GbGF0ZURlY29kZSBdIC9MZW5ndGggMzE1MAo+PgpzdHJlYW0KR2IhO2Y+QmVkbCZxODAxVyg0LiUnXHJxPD4pW0hRI0FoR0IzVyRUYixNS1k7OFpoMkNpY0Y4JkRjUStUWWVjVzhBaUdQWyp0Vi5qZV5ucz5XW1w1OnBnXjhbSUwnbUpMXEdFYyhhZElGXnAjWzhqcUFUVmhnQmNcUFVsLW1qcXJOVSVwbVQxNE1CcTpwW0RaZUdPXl8hUmJrTF9VQmQ3SFIucSNPb2MpXThXL24yaypvW2JZaSM0X3AyIUJKODw4T3BCWUAnMjxsMC1JMGpkNUxBUiInaGNeWmIlMXBwOUY6XCQpM1pvOjk0NlpwP01GNGwsQ1VrLDhOR2M4UlZlUTlhJVFWNUM0UDhyRClPalZTcFhhPmk9LSFZYCpbXj5LI0M5W2VXSkFKZVJhJmhNMTUqM0VwaCxcUydWK1E8O086W2ZJLTMyQEVybytwPz86L2NQaEU4NyVDaV1EPGoyYU9iWWNhQ0dWaWhOU20raG4lQFx0J2Q8VUNkSG83aEpQL0UwZGBMa0NxRVo+YCZPI0BTbUsjYlZLXzBXdHRVQm1qbmlPMGAjMSY/c0AlM24vMmEnSWBHdE9fVlcmWitWVEZoYjdMOU4sLmNlYiZeZkEtLCdrP14kZlVQSGdXaXU1XCtyb1IuQmlAU1NyMDxJKVYwcCdbNyVwXk41SyRjXUZxa0M+REpSbFI3UVEjZjNDXk9sPydGZWUxKzhYOj1YWHVFPionVmdtP0VDOCIjSWRHLE5gKEkjWDRtYVgiS1xKV1RAJV5UXl4+LnEnIXBOVC5QI2heW0s4biRxTlhUSy1BL0hrV0oyNkVwPk1jKlVeaGhaUFZwXDNGL1VyRi5FNzFwP0o1Xjg7biMwTTVgVlh0UyxAUE5OWyU0XCtoZyNPYnVnNl8hK3ItTEZwalNrRmhZJU8wODZxQio7PVc/ZS8qXGxxbSRCVGtCUWQsRlhGamZaMUAkblI6WSRkUVQncFgoS1pkdUJXOCJGMCUqXSVvZz46NWNTZTg3UGljJFBuUFc/R1l0bFYmK0khO2NxRktgbUtjPjY6UCMoS3MvLSQmRnVkLFI+K2wnOFtaVipZdCM4S0VIcmNFT2hVIXBfYmQ6N1M9bkFOLCVcMy0kVHRJUlJlX2VyWmhPKGdRa3FFQCFtSyElMFNuOypebGc8VG4yKjUhT1s8bSVJQy5pZj46NGdsSCVQcUNua0FOQjVvMl9CTi03Rk5yWitja1FyUFVtYDx0IUU1V0s4VFA6QnRLK0M4QjU3T1owPS0uNTpUW2lgdS4hXyhWaGQ5N0JNaihbKCEvVTJNI11jcTZcTyJRMF4pOWJVZzpEYCc7P1VoQDtaSWtJVComLVklMFE0KUlDaCkhLyg5SjImJ0wiWGRnNWBickRXPm9QWWVBbUdXLCZ1VWNZZ2tjTEE6TiFdLCdzSVsnPlpAcyZnUEBOKDlwc25pc0xyXk4tSypgVmZAQjUiM2tTWlNtJUk/Nl8kQTYvRTkwIy8rQyFMMjBmJ0siNyxCZyMvazYpZl4hamR1USJuOSRtZko6NnBISFlFPFk3XC1vLyVpXC1HJT9tJjUlQ2NLdVg3KSRsJCZZcCsiXj8nTD1nYG5UWlFZbVtFXGhGXm5yaEJqLmE8aWg7TkM7UC0/XE1EM0JuSUEsYi5zSilWNGRka0xeIU9QJDpoZzhbOEdHWylRRHArJlMxTVUnZ1NxQidMPm9tbis6aExEb1wpWFQlWWpDPFtTXGxRJENGNCVEcCdCNj1JYjU2REtMQ0woU0FoOTk/YiQyaDM7VystJ0hgKDZjIjdec1FFXio+dDAnT0soImo2NG5VcSNmU1xjZTU2OCRwMmllKk0lQjsuO0doPD45dSxJa0JwO1slJysnRiFnZnBiJlNyNF5Wa3BdS1YnLExqbkA8a29EVWtRPUVdMEJLUmQlSmRAPzUqRGNkJCJVTm4ydGg/Km5dbGolMzlXVVxtJCk4M20nYnBuRGs8Pi5cWnBXTF5UXW0pZ1tgWighIkI/JVNLalRJM1UpP2NtX0IpQ2wwZGU/cW50J1lpYGxKSTNeaiI0bydnVVxBSVdvPihTKzUxcC1gUGluJE05LiYvVTBaOHVZcSoial4kMFxGZ103ci9XaDEoOTtFK2gtSyJZSnMqQygybVE3T2AhKXFyKSI9KXEuU1YvNCg8JzZGN0xqQGFyakw0Omg5PFNqJztnPmorSiI2PT5XZGA6MDttOmBXSURhJ3I8JDQnLlAwLycpPDdTQjBLNnApcShhaC5aZGlUbXM1OGM/TCc/dCFwK28+P0huLFZIImBPKDJzTC9qKEdZMlkzPzhsbTUqJTMtSSsiIVcqIV1LKHFwKFBoZDJTM0djRSl0ajxtJG8kIjxEaytuZUJNN0gjMCdwblpTbmltVWQhNCY7QF8uNidgNEQ1LEdpSCxZcVdARVNJYm1mNiIyKyNDQ201ZidcNVNBPCwyQSxRa1JtTFBeLkpVW3NqTTw6LlA2YmJKPSxFMVRkLFg9Qm0wNmlsJm5PLVNgMSYkLGxYWFxtXWBkY0YuamlSXFYoVmxhNjsjRmxVTEQ7MCJKZElYaClrJTc/XztPYzNyQSomY2RTbXEtPG02T3VaMCltKkNOOz5NMGZsRTQzME1IPk4jakBfRGAsXSpFQ2RJaEpZUDNBaFFEbURURzoqbGZjYVFBTUApOGw6amRyYzZTaiY1KExNX0JtPD85Oz03OSRGSVcoJS9uT105aT49JzNGIyYmQ1hIYkNsI2FEVUJZQj1STGAwaTojYz83NXNAXyplcy8pLms7JTtvS2psK0BxJWIiamNYTGRxOHRRWDhVN1ZAbXM6dHUtZTFaVE1dKmFMWT1wJlMtQko8RV82O3MoS0A3UFImMyVITmlXMGUtQnBSaC9RNyk8Yio2Rk5qPWdRNys8IS0qI1NpMTxmP0ZXaUFYVGhfJ09LOD9GYkIvP11bTHMhXzxZdVUjKWtXc1I+Y1FHKz5HJCNmZFhcL0NZckErKidcJjtwS1NHaE06XEBDYWVxVG8lMXBmPylgTFVEQW1DNCVyaCMlRE0qRyovUVEual9vT0hGIjk0c0I2WWBgU14yYmBjIWxoRWtXK0NzOV9FPVtwaFleTVBqQiYianEuW1ZdcTA8ZkkpVFBhb1c2PWxnaWowNEhOcUs7bjE7WDNJdW9sZmhlQF46XF5pV19CbyUnLDA5OlteRkJMZT9BRWhINitqMywwdDkkY0RqXkUidVErPlM+MyopRyI4KVQsXjRTM05ORFBDPEB0MT5RZy9PPiRkRSwrIS9cJyMyYGBORCojb1w0UW9cUU9sPzInZCpcOUA+STwsYHJNP1ohRD9QXi8/Q0RWVVZfcUNIKmVKXlE7SG5GM2A1ZyI2aElJLE8vSSpkTCw2XkMrcV9uXE1dYCU2PmxHOlhGTSgsPCUiUic5NmtFW1l0Mk8qSnUkJ24kRiE7LiVSY01pPU9LPGMuJCNnXFhyPVYrIyRDNzhwKXM7NnJhQURMbT1Mcl8xVSRONTROMjA7PzljK01WRG9LTVEnKiRUJWZgYjI8Z0wtZDs8Zl5sIk86Yjk2SSxqV2FxLkcxRypLUzUjWDZrNypFMT4lPW1tYGdBUUI0KDAoNmNjOVxZVG8oP1ApSGlyPzJdQihvSkBxRTZAIUR0UUdGQDUwJFY2LWVsNyNlR1Y9R3I6ZidFbDxkWyhmRSo2TENbKjckKU9jY15tQHFuKXUiY2hqLTNIV1U7YDdfZkU5NjVEOD0ycWBDRTRuPmBBamtLdUVIX2s+XktkdGhyO3Q/KTMoKGVJJTFSVWFFW0lAO0kkYj1ZZ3A9J1B0cmc9YnFLUWVqN0BbJS1zQlkpWUw2UWxqNXJXK2xdbz0vNTNTOjFALlsnQktpJWZDJ1lWTV1CTWIjTEhSSSs0MjgmPSEyVi5ZVSw9J2Y1Y0NGTDFXIiVkdGBzTWlYdXBySic7IW4hM2tMWWFmLiNbbGwpMzxnX0N0TlJmU1pUOGs3MkUrMSJyVFtuN0NzJ2pNLWhfcmRHJGtnIzBxbUhtImcnbVF0Oks2bDVAXXNHYyoiWF84KXBXSmdsJDsoXDRVVT5TSGMxI0gwdSJkU2kpREcuTW4sOmlpXCxCUF1KKW1DcWI6TCptMkJWOEFrTm5JazIrMStbYDMsV2duXkNaNFYublVyImpBYkApV34+ZW5kc3RyZWFtCmVuZG9iagp4cmVmCjAgMTAKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDYxIDAwMDAwIG4gCjAwMDAwMDAxMTIgMDAwMDAgbiAKMDAwMDAwMDIxOSAwMDAwMCBuIAowMDAwMDAwMzMxIDAwMDAwIG4gCjAwMDAwMDA0NDYgMDAwMDAgbiAKMDAwMDAwMDY0OSAwMDAwMCBuIAowMDAwMDAwNzE3IDAwMDAwIG4gCjAwMDAwMDEwMTAgMDAwMDAgbiAKMDAwMDAwMTA2OSAwMDAwMCBuIAp0cmFpbGVyCjw8Ci9JRCAKWzxjYTMxNWVhODhlMjE2YWM4M2YxNmUyYzlhZWU0MjgyNj48Y2EzMTVlYTg4ZTIxNmFjODNmMTZlMmM5YWVlNDI4MjY+XQolIFJlcG9ydExhYiBnZW5lcmF0ZWQgUERGIGRvY3VtZW50IC0tIGRpZ2VzdCAob3BlbnNvdXJjZSkKCi9JbmZvIDcgMCBSCi9Sb290IDYgMCBSCi9TaXplIDEwCj4+CnN0YXJ0eHJlZgo0MzEwCiUlRU9GCg==" download data-i18n="nav_cv">Mon CV</a>
+      <button class="lang-toggle" id="lang-toggle" type="button" aria-label="Switch language">EN</button>
     </nav>
   </div>
 </header>
@@ -291,17 +302,17 @@
     <div class="wrap">
       <div class="hero-grid">
         <div>
-          <p class="hello">// Bonjour, je suis</p>
-          <h1>Mohamed<br>EL MEKAOUI, <span class="accent-word">développeur</span> logiciel</h1>
-          <p class="role">Systèmes d'Information · Java / Spring Boot · JavaScript / TypeScript</p>
-          <p class="school">Étudiant ingénieur en 2<sup>e</sup> année du cycle ingénieur à l'ESIR, Rennes (2024–2028)</p>
+          <p class="hello" data-i18n="hello">// Bonjour, je suis</p>
+          <h1 data-i18n="h1">Mohamed<br>EL MEKAOUI, <span class="accent-word">développeur</span> logiciel</h1>
+          <p class="role" data-i18n="role">Systèmes d'Information · Java / Spring Boot · JavaScript / TypeScript</p>
+          <p class="school" data-i18n="school">Étudiant ingénieur en 2<sup>e</sup> année du cycle ingénieur à l'ESIR, Rennes (2024–2028)</p>
           <p class="typed-line"><span id="typed"></span><span class="typed-cursor"></span></p>
           <div>
-            <span class="status"><span class="dot"></span>Je recherche un stage de développement logiciel de 3 mois à partir de juin 2027 — mobile dans toute la France.</span>
+            <span class="status"><span class="dot"></span><span data-i18n="status">Je recherche un stage de développement logiciel de 3 mois à partir de juin 2027 — mobile dans toute la France.</span></span>
           </div>
           <div class="hero-actions">
-            <a class="btn btn-solid" href="#projets">Voir mes projets</a>
-            <a class="btn btn-ghost" href="https://github.com/Mohamed-esir" target="_blank" rel="noopener">Mon GitHub</a>
+            <a class="btn btn-solid" href="#projets" data-i18n="btn_projects">Voir mes projets</a>
+            <a class="btn btn-ghost" href="https://github.com/Mohamed-esir" target="_blank" rel="noopener" data-i18n="btn_github">Mon GitHub</a>
             <a class="btn btn-ghost" href="data:application/octet-stream;base64,JVBERi0xLjQKJZOMi54gUmVwb3J0TGFiIEdlbmVyYXRlZCBQREYgZG9jdW1lbnQgKG9wZW5zb3VyY2UpCjEgMCBvYmoKPDwKL0YxIDIgMCBSIC9GMiAzIDAgUiAvRjMgNCAwIFIKPj4KZW5kb2JqCjIgMCBvYmoKPDwKL0Jhc2VGb250IC9IZWx2ZXRpY2EgL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcgL05hbWUgL0YxIC9TdWJ0eXBlIC9UeXBlMSAvVHlwZSAvRm9udAo+PgplbmRvYmoKMyAwIG9iago8PAovQmFzZUZvbnQgL0hlbHZldGljYS1Cb2xkIC9FbmNvZGluZyAvV2luQW5zaUVuY29kaW5nIC9OYW1lIC9GMiAvU3VidHlwZSAvVHlwZTEgL1R5cGUgL0ZvbnQKPj4KZW5kb2JqCjQgMCBvYmoKPDwKL0Jhc2VGb250IC9IZWx2ZXRpY2EtT2JsaXF1ZSAvRW5jb2RpbmcgL1dpbkFuc2lFbmNvZGluZyAvTmFtZSAvRjMgL1N1YnR5cGUgL1R5cGUxIC9UeXBlIC9Gb250Cj4+CmVuZG9iago1IDAgb2JqCjw8Ci9Db250ZW50cyA5IDAgUiAvTWVkaWFCb3ggWyAwIDAgNTk1LjI3NTYgODQxLjg4OTggXSAvUGFyZW50IDggMCBSIC9SZXNvdXJjZXMgPDwKL0ZvbnQgMSAwIFIgL1Byb2NTZXQgWyAvUERGIC9UZXh0IC9JbWFnZUIgL0ltYWdlQyAvSW1hZ2VJIF0KPj4gL1JvdGF0ZSAwIC9UcmFucyA8PAoKPj4gCiAgL1R5cGUgL1BhZ2UKPj4KZW5kb2JqCjYgMCBvYmoKPDwKL1BhZ2VNb2RlIC9Vc2VOb25lIC9QYWdlcyA4IDAgUiAvVHlwZSAvQ2F0YWxvZwo+PgplbmRvYmoKNyAwIG9iago8PAovQXV0aG9yIChNb2hhbWVkIEVMIE1FS0FPVUkpIC9DcmVhdGlvbkRhdGUgKEQ6MjAyNjExMjEwNzU5MDMrMDEnMDAnKSAvQ3JlYXRvciAoXCh1bnNwZWNpZmllZFwpKSAvS2V5d29yZHMgKCkgL01vZERhdGUgKEQ6MjAyNjExMjEwNzU5MDMrMDEnMDAnKSAvUHJvZHVjZXIgKFJlcG9ydExhYiBQREYgTGlicmFyeSAtIFwob3BlbnNvdXJjZVwpKSAKICAvU3ViamVjdCAoXCh1bnNwZWNpZmllZFwpKSAvVGl0bGUgKENWIE1vaGFtZWQgRUwgTUVLQU9VSSkgL1RyYXBwZWQgL0ZhbHNlCj4+CmVuZG9iago4IDAgb2JqCjw8Ci9Db3VudCAxIC9LaWRzIFsgNSAwIFIgXSAvVHlwZSAvUGFnZXMKPj4KZW5kb2JqCjkgMCBvYmoKPDwKL0ZpbHRlciBbIC9BU0NJSTg1RGVjb2RlIC9GbGF0ZURlY29kZSBdIC9MZW5ndGggMzE1MAo+PgpzdHJlYW0KR2IhO2Y+QmVkbCZxODAxVyg0LiUnXHJxPD4pW0hRI0FoR0IzVyRUYixNS1k7OFpoMkNpY0Y4JkRjUStUWWVjVzhBaUdQWyp0Vi5qZV5ucz5XW1w1OnBnXjhbSUwnbUpMXEdFYyhhZElGXnAjWzhqcUFUVmhnQmNcUFVsLW1qcXJOVSVwbVQxNE1CcTpwW0RaZUdPXl8hUmJrTF9VQmQ3SFIucSNPb2MpXThXL24yaypvW2JZaSM0X3AyIUJKODw4T3BCWUAnMjxsMC1JMGpkNUxBUiInaGNeWmIlMXBwOUY6XCQpM1pvOjk0NlpwP01GNGwsQ1VrLDhOR2M4UlZlUTlhJVFWNUM0UDhyRClPalZTcFhhPmk9LSFZYCpbXj5LI0M5W2VXSkFKZVJhJmhNMTUqM0VwaCxcUydWK1E8O086W2ZJLTMyQEVybytwPz86L2NQaEU4NyVDaV1EPGoyYU9iWWNhQ0dWaWhOU20raG4lQFx0J2Q8VUNkSG83aEpQL0UwZGBMa0NxRVo+YCZPI0BTbUsjYlZLXzBXdHRVQm1qbmlPMGAjMSY/c0AlM24vMmEnSWBHdE9fVlcmWitWVEZoYjdMOU4sLmNlYiZeZkEtLCdrP14kZlVQSGdXaXU1XCtyb1IuQmlAU1NyMDxJKVYwcCdbNyVwXk41SyRjXUZxa0M+REpSbFI3UVEjZjNDXk9sPydGZWUxKzhYOj1YWHVFPionVmdtP0VDOCIjSWRHLE5gKEkjWDRtYVgiS1xKV1RAJV5UXl4+LnEnIXBOVC5QI2heW0s4biRxTlhUSy1BL0hrV0oyNkVwPk1jKlVeaGhaUFZwXDNGL1VyRi5FNzFwP0o1Xjg7biMwTTVgVlh0UyxAUE5OWyU0XCtoZyNPYnVnNl8hK3ItTEZwalNrRmhZJU8wODZxQio7PVc/ZS8qXGxxbSRCVGtCUWQsRlhGamZaMUAkblI6WSRkUVQncFgoS1pkdUJXOCJGMCUqXSVvZz46NWNTZTg3UGljJFBuUFc/R1l0bFYmK0khO2NxRktgbUtjPjY6UCMoS3MvLSQmRnVkLFI+K2wnOFtaVipZdCM4S0VIcmNFT2hVIXBfYmQ6N1M9bkFOLCVcMy0kVHRJUlJlX2VyWmhPKGdRa3FFQCFtSyElMFNuOypebGc8VG4yKjUhT1s8bSVJQy5pZj46NGdsSCVQcUNua0FOQjVvMl9CTi03Rk5yWitja1FyUFVtYDx0IUU1V0s4VFA6QnRLK0M4QjU3T1owPS0uNTpUW2lgdS4hXyhWaGQ5N0JNaihbKCEvVTJNI11jcTZcTyJRMF4pOWJVZzpEYCc7P1VoQDtaSWtJVComLVklMFE0KUlDaCkhLyg5SjImJ0wiWGRnNWBickRXPm9QWWVBbUdXLCZ1VWNZZ2tjTEE6TiFdLCdzSVsnPlpAcyZnUEBOKDlwc25pc0xyXk4tSypgVmZAQjUiM2tTWlNtJUk/Nl8kQTYvRTkwIy8rQyFMMjBmJ0siNyxCZyMvazYpZl4hamR1USJuOSRtZko6NnBISFlFPFk3XC1vLyVpXC1HJT9tJjUlQ2NLdVg3KSRsJCZZcCsiXj8nTD1nYG5UWlFZbVtFXGhGXm5yaEJqLmE8aWg7TkM7UC0/XE1EM0JuSUEsYi5zSilWNGRka0xeIU9QJDpoZzhbOEdHWylRRHArJlMxTVUnZ1NxQidMPm9tbis6aExEb1wpWFQlWWpDPFtTXGxRJENGNCVEcCdCNj1JYjU2REtMQ0woU0FoOTk/YiQyaDM7VystJ0hgKDZjIjdec1FFXio+dDAnT0soImo2NG5VcSNmU1xjZTU2OCRwMmllKk0lQjsuO0doPD45dSxJa0JwO1slJysnRiFnZnBiJlNyNF5Wa3BdS1YnLExqbkA8a29EVWtRPUVdMEJLUmQlSmRAPzUqRGNkJCJVTm4ydGg/Km5dbGolMzlXVVxtJCk4M20nYnBuRGs8Pi5cWnBXTF5UXW0pZ1tgWighIkI/JVNLalRJM1UpP2NtX0IpQ2wwZGU/cW50J1lpYGxKSTNeaiI0bydnVVxBSVdvPihTKzUxcC1gUGluJE05LiYvVTBaOHVZcSoial4kMFxGZ103ci9XaDEoOTtFK2gtSyJZSnMqQygybVE3T2AhKXFyKSI9KXEuU1YvNCg8JzZGN0xqQGFyakw0Omg5PFNqJztnPmorSiI2PT5XZGA6MDttOmBXSURhJ3I8JDQnLlAwLycpPDdTQjBLNnApcShhaC5aZGlUbXM1OGM/TCc/dCFwK28+P0huLFZIImBPKDJzTC9qKEdZMlkzPzhsbTUqJTMtSSsiIVcqIV1LKHFwKFBoZDJTM0djRSl0ajxtJG8kIjxEaytuZUJNN0gjMCdwblpTbmltVWQhNCY7QF8uNidgNEQ1LEdpSCxZcVdARVNJYm1mNiIyKyNDQ201ZidcNVNBPCwyQSxRa1JtTFBeLkpVW3NqTTw6LlA2YmJKPSxFMVRkLFg9Qm0wNmlsJm5PLVNgMSYkLGxYWFxtXWBkY0YuamlSXFYoVmxhNjsjRmxVTEQ7MCJKZElYaClrJTc/XztPYzNyQSomY2RTbXEtPG02T3VaMCltKkNOOz5NMGZsRTQzME1IPk4jakBfRGAsXSpFQ2RJaEpZUDNBaFFEbURURzoqbGZjYVFBTUApOGw6amRyYzZTaiY1KExNX0JtPD85Oz03OSRGSVcoJS9uT105aT49JzNGIyYmQ1hIYkNsI2FEVUJZQj1STGAwaTojYz83NXNAXyplcy8pLms7JTtvS2psK0BxJWIiamNYTGRxOHRRWDhVN1ZAbXM6dHUtZTFaVE1dKmFMWT1wJlMtQko8RV82O3MoS0A3UFImMyVITmlXMGUtQnBSaC9RNyk8Yio2Rk5qPWdRNys8IS0qI1NpMTxmP0ZXaUFYVGhfJ09LOD9GYkIvP11bTHMhXzxZdVUjKWtXc1I+Y1FHKz5HJCNmZFhcL0NZckErKidcJjtwS1NHaE06XEBDYWVxVG8lMXBmPylgTFVEQW1DNCVyaCMlRE0qRyovUVEual9vT0hGIjk0c0I2WWBgU14yYmBjIWxoRWtXK0NzOV9FPVtwaFleTVBqQiYianEuW1ZdcTA8ZkkpVFBhb1c2PWxnaWowNEhOcUs7bjE7WDNJdW9sZmhlQF46XF5pV19CbyUnLDA5OlteRkJMZT9BRWhINitqMywwdDkkY0RqXkUidVErPlM+MyopRyI4KVQsXjRTM05ORFBDPEB0MT5RZy9PPiRkRSwrIS9cJyMyYGBORCojb1w0UW9cUU9sPzInZCpcOUA+STwsYHJNP1ohRD9QXi8/Q0RWVVZfcUNIKmVKXlE7SG5GM2A1ZyI2aElJLE8vSSpkTCw2XkMrcV9uXE1dYCU2PmxHOlhGTSgsPCUiUic5NmtFW1l0Mk8qSnUkJ24kRiE7LiVSY01pPU9LPGMuJCNnXFhyPVYrIyRDNzhwKXM7NnJhQURMbT1Mcl8xVSRONTROMjA7PzljK01WRG9LTVEnKiRUJWZgYjI8Z0wtZDs8Zl5sIk86Yjk2SSxqV2FxLkcxRypLUzUjWDZrNypFMT4lPW1tYGdBUUI0KDAoNmNjOVxZVG8oP1ApSGlyPzJdQihvSkBxRTZAIUR0UUdGQDUwJFY2LWVsNyNlR1Y9R3I6ZidFbDxkWyhmRSo2TENbKjckKU9jY15tQHFuKXUiY2hqLTNIV1U7YDdfZkU5NjVEOD0ycWBDRTRuPmBBamtLdUVIX2s+XktkdGhyO3Q/KTMoKGVJJTFSVWFFW0lAO0kkYj1ZZ3A9J1B0cmc9YnFLUWVqN0BbJS1zQlkpWUw2UWxqNXJXK2xdbz0vNTNTOjFALlsnQktpJWZDJ1lWTV1CTWIjTEhSSSs0MjgmPSEyVi5ZVSw9J2Y1Y0NGTDFXIiVkdGBzTWlYdXBySic7IW4hM2tMWWFmLiNbbGwpMzxnX0N0TlJmU1pUOGs3MkUrMSJyVFtuN0NzJ2pNLWhfcmRHJGtnIzBxbUhtImcnbVF0Oks2bDVAXXNHYyoiWF84KXBXSmdsJDsoXDRVVT5TSGMxI0gwdSJkU2kpREcuTW4sOmlpXCxCUF1KKW1DcWI6TCptMkJWOEFrTm5JazIrMStbYDMsV2duXkNaNFYublVyImpBYkApV34+ZW5kc3RyZWFtCmVuZG9iagp4cmVmCjAgMTAKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDYxIDAwMDAwIG4gCjAwMDAwMDAxMTIgMDAwMDAgbiAKMDAwMDAwMDIxOSAwMDAwMCBuIAowMDAwMDAwMzMxIDAwMDAwIG4gCjAwMDAwMDA0NDYgMDAwMDAgbiAKMDAwMDAwMDY0OSAwMDAwMCBuIAowMDAwMDAwNzE3IDAwMDAwIG4gCjAwMDAwMDEwMTAgMDAwMDAgbiAKMDAwMDAwMTA2OSAwMDAwMCBuIAp0cmFpbGVyCjw8Ci9JRCAKWzxjYTMxNWVhODhlMjE2YWM4M2YxNmUyYzlhZWU0MjgyNj48Y2EzMTVlYTg4ZTIxNmFjODNmMTZlMmM5YWVlNDI4MjY+XQolIFJlcG9ydExhYiBnZW5lcmF0ZWQgUERGIGRvY3VtZW50IC0tIGRpZ2VzdCAob3BlbnNvdXJjZSkKCi9JbmZvIDcgMCBSCi9Sb290IDYgMCBSCi9TaXplIDEwCj4+CnN0YXJ0eHJlZgo0MzEwCiUlRU9GCg==" download>CV (PDF)</a>
           </div>
         </div>
@@ -309,7 +320,7 @@
           <div class="ring-wrap">
             <svg class="ring-svg" viewBox="0 0 200 200" aria-hidden="true">
               <defs><path id="circlePath" d="M 100,100 m -84,0 a 84,84 0 1,1 168,0 a 84,84 0 1,1 -168,0"/></defs>
-              <text><textPath href="#circlePath">DÉVELOPPEMENT LOGICIEL • JAVA • SPRING BOOT • TYPESCRIPT • </textPath></text>
+              <text><textPath href="#circlePath" id="ring-text">DÉVELOPPEMENT LOGICIEL • JAVA • SPRING BOOT • TYPESCRIPT • </textPath></text>
             </svg>
             <div class="photo-frame">
               <div class="photo-inner">
@@ -326,10 +337,10 @@
       </div>
 
       <div class="stats">
-        <div class="stat"><div class="num">5</div><div class="lbl">projets académiques et personnels</div></div>
-        <div class="stat"><div class="num">1</div><div class="lbl">stage en entreprise — ONEE, été 2025</div></div>
-        <div class="stat"><div class="num">5</div><div class="lbl">certifications — Spring &amp; Linux Foundation</div></div>
-        <div class="stat"><div class="num">21</div><div class="lbl">compétences techniques au quotidien</div></div>
+        <div class="stat"><div class="num">5</div><div class="lbl" data-i18n="stat1">projets académiques et personnels</div></div>
+        <div class="stat"><div class="num">1</div><div class="lbl" data-i18n="stat2">stage en entreprise — ONEE, été 2025</div></div>
+        <div class="stat"><div class="num">5</div><div class="lbl" data-i18n="stat3">certifications — Spring &amp; Linux Foundation</div></div>
+        <div class="stat"><div class="num">21</div><div class="lbl" data-i18n="stat4">compétences techniques au quotidien</div></div>
       </div>
     </div>
   </div>
@@ -345,18 +356,18 @@
 
   <!-- À propos -->
   <section id="a-propos">
-    <p class="kicker">À propos</p>
-    <h2>Un profil, en code et en clair</h2>
+    <p class="kicker" data-i18n="about_kicker">À propos</p>
+    <h2 data-i18n="about_h2">Un profil, en code et en clair</h2>
     <div class="about-grid">
       <div>
-        <p>Je suis étudiant en 2<sup>e</sup> année du cycle ingénieur à l'ESIR (Rennes), en spécialité Systèmes d'Information. Je développe principalement en Java avec Spring Boot, et en JavaScript / TypeScript côté web. Je travaille aussi avec des bases de données PostgreSQL et MySQL, et j'utilise Git et Docker dans mes projets.</p>
-        <p>À l'été 2025, j'ai fait un stage de développement à l'ONEE à Meknès (Maroc) : participation au développement d'une base de données de gestion du parc informatique et consultation du SICOM. Je cherche maintenant un stage de 3 mois à partir de juin 2027, en développement logiciel, et je suis mobile dans toute la France.</p>
-        <p class="muted">Langues : français bilingue (DELF B2), arabe (langue maternelle), anglais B2.</p>
-        <p class="muted">Ce site est hébergé sur GitHub Pages, à partir du dépôt public de mon portfolio — le code est visible sur mon GitHub.</p>
+        <p data-i18n="about_p1">Je suis étudiant en 2<sup>e</sup> année du cycle ingénieur à l'ESIR (Rennes), en spécialité Systèmes d'Information. Je développe principalement en Java avec Spring Boot, et en JavaScript / TypeScript côté web. Je travaille aussi avec des bases de données PostgreSQL et MySQL, et j'utilise Git et Docker dans mes projets.</p>
+        <p data-i18n="about_p2">À l'été 2025, j'ai fait un stage de développement à l'ONEE à Meknès (Maroc) : participation au développement d'une base de données de gestion du parc informatique et consultation du SICOM. Je cherche maintenant un stage de 3 mois à partir de juin 2027, en développement logiciel, et je suis mobile dans toute la France.</p>
+        <p class="muted" data-i18n="about_p3">Langues : français bilingue (DELF B2), arabe (langue maternelle), anglais B2.</p>
+        <p class="muted" data-i18n="about_p4">Ce site est hébergé sur GitHub Pages, à partir du dépôt public de mon portfolio — le code est visible sur mon GitHub.</p>
       </div>
       <div class="code-card" aria-hidden="true">
         <div class="code-head"><i class="r"></i><i class="y"></i><i class="g"></i><span>Developer.java</span></div>
-        <pre><code><span class="k">class</span> <span class="p">Developer</span> {
+        <pre><code id="code-block"><span class="k">class</span> <span class="p">Developer</span> {
   name: <span class="s">"Mohamed EL MEKAOUI"</span>,
   role: <span class="s">"Étudiant ingénieur — ESIR"</span>,
   skills: {
@@ -374,100 +385,133 @@
 
   <!-- Savoir-faire -->
   <section id="savoir-faire">
-    <p class="kicker">Savoir-faire</p>
-    <h2>Ce que je sais faire</h2>
-    <p class="section-sub">Chaque savoir-faire ci-dessous est adossé à un projet ou à une expérience réelle de mon parcours — pas de théorie sans pratique.</p>
+    <p class="kicker" data-i18n="exp_kicker">Savoir-faire</p>
+    <h2 data-i18n="exp_h2">Ce que je sais faire</h2>
+    <p class="section-sub" data-i18n="exp_sub">Chaque savoir-faire ci-dessous est adossé à un projet ou à une expérience réelle de mon parcours — pas de théorie sans pratique.</p>
     <div class="cards">
       <article class="card">
         <div class="ico">{ }</div>
-        <h3>Développement backend</h3>
-        <p>Concevoir la logique métier et les services d'une application en Java / Spring Boot, et en NestJS ou FastAPI côté JavaScript / Python.</p>
-        <p class="proof">→ Certifié <b>Spring Framework</b> (Coursera, 2026)</p>
+        <h3 data-i18n="exp1_t">Développement backend</h3>
+        <p data-i18n="exp1_d">Concevoir la logique métier et les services d'une application en Java / Spring Boot, et en NestJS ou FastAPI côté JavaScript / Python.</p>
+        <p class="proof" data-i18n="exp1_p">→ Certifié <b>Spring Framework</b> (Coursera, 2026)</p>
       </article>
       <article class="card">
         <div class="ico">&lt;/&gt;</div>
-        <h3>Applications web</h3>
-        <p>Développer des interfaces et des applications web complètes en JavaScript et TypeScript, avec React ou Angular.</p>
-        <p class="proof">→ Projets <b>AuraCity</b> et <b>application web TypeScript</b></p>
+        <h3 data-i18n="exp2_t">Applications web</h3>
+        <p data-i18n="exp2_d">Développer des interfaces et des applications web complètes en JavaScript et TypeScript, avec React ou Angular.</p>
+        <p class="proof" data-i18n="exp2_p">→ Projets <b>AuraCity</b> et <b>application web TypeScript</b></p>
       </article>
       <article class="card">
         <div class="ico">SQL</div>
-        <h3>Bases de données</h3>
-        <p>Modéliser et interroger des bases PostgreSQL, MySQL et SQLite : schémas, requêtes, gestion de données métier.</p>
-        <p class="proof">→ Stage <b>ONEE</b> : base du parc informatique</p>
+        <h3 data-i18n="exp3_t">Bases de données</h3>
+        <p data-i18n="exp3_d">Modéliser et interroger des bases PostgreSQL, MySQL et SQLite : schémas, requêtes, gestion de données métier.</p>
+        <p class="proof" data-i18n="exp3_p">→ Stage <b>ONEE</b> : base du parc informatique</p>
       </article>
       <article class="card">
         <div class="ico">✓</div>
-        <h3>Tests &amp; qualité logicielle</h3>
-        <p>Mettre en place une démarche de vérification et validation : écrire des tests, analyser du code existant, rédiger un rapport.</p>
-        <p class="proof">→ Projet <b>vérification &amp; validation</b> en Java</p>
+        <h3 data-i18n="exp4_t">Tests &amp; qualité logicielle</h3>
+        <p data-i18n="exp4_d">Mettre en place une démarche de vérification et validation : écrire des tests, analyser du code existant, rédiger un rapport.</p>
+        <p class="proof" data-i18n="exp4_p">→ Projet <b>vérification &amp; validation</b> en Java</p>
       </article>
       <article class="card">
         <div class="ico">UML</div>
-        <h3>Conception &amp; modélisation</h3>
-        <p>Analyser un besoin et le modéliser en UML : cas d'utilisation, diagrammes de classes, de séquence et d'états.</p>
-        <p class="proof">→ Projet <b>réservation de billets de cinéma</b></p>
+        <h3 data-i18n="exp5_t">Conception &amp; modélisation</h3>
+        <p data-i18n="exp5_d">Analyser un besoin et le modéliser en UML : cas d'utilisation, diagrammes de classes, de séquence et d'états.</p>
+        <p class="proof" data-i18n="exp5_p">→ Projet <b>réservation de billets de cinéma</b></p>
       </article>
       <article class="card">
         <div class="ico">$_</div>
-        <h3>Environnement &amp; outils</h3>
-        <p>Travailler en équipe avec Git, conteneuriser avec Docker et évoluer sous Linux au quotidien.</p>
-        <p class="proof">→ <b>4 certifications</b> The Linux Foundation (2025)</p>
+        <h3 data-i18n="exp6_t">Environnement &amp; outils</h3>
+        <p data-i18n="exp6_d">Travailler en équipe avec Git, conteneuriser avec Docker et évoluer sous Linux au quotidien.</p>
+        <p class="proof" data-i18n="exp6_p">→ <b>4 certifications</b> The Linux Foundation (2025)</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Soft skills -->
+  <section id="soft-skills">
+    <p class="kicker">Soft skills</p>
+    <h2 data-i18n="soft_h2">Mes qualités</h2>
+    <p class="section-sub" data-i18n="soft_sub">Pas de pourcentages inventés : chaque qualité est illustrée par une situation réelle de mon parcours.</p>
+    <div class="cards cards-4">
+      <article class="card">
+        <div class="ico">⚑</div>
+        <h3 data-i18n="soft1_t">Travail en équipe</h3>
+        <p data-i18n="soft1_d">Habitué au travail en équipe et en binôme, avec Git comme outil de collaboration au quotidien.</p>
+        <p class="proof" data-i18n="soft1_p">→ <b>AuraCity</b> en équipe, <b>V&amp;V</b> en binôme</p>
+      </article>
+      <article class="card">
+        <div class="ico">↗</div>
+        <h3 data-i18n="soft2_t">Apprentissage autonome</h3>
+        <p data-i18n="soft2_d">Je me forme en continu en dehors des cours, jusqu'à la certification, sur les technos de mon domaine.</p>
+        <p class="proof" data-i18n="soft2_p">→ <b>5 certifications</b> en auto-formation</p>
+      </article>
+      <article class="card">
+        <div class="ico">◎</div>
+        <h3 data-i18n="soft3_t">Rigueur &amp; persévérance</h3>
+        <p data-i18n="soft3_d">Formé par deux années de classes préparatoires MP : charge de travail élevée, exigence et constance.</p>
+        <p class="proof" data-i18n="soft3_p">→ <b>Carnot Prépas MP</b>, 2022–2024</p>
+      </article>
+      <article class="card">
+        <div class="ico">«»</div>
+        <h3 data-i18n="soft4_t">Communication</h3>
+        <p data-i18n="soft4_d">À l'aise à l'écrit comme à l'oral, dans un contexte d'études en France et de stage au Maroc.</p>
+        <p class="proof" data-i18n="soft4_p">→ <b>Français bilingue</b>, arabe natif, anglais B2</p>
       </article>
     </div>
   </section>
 
   <!-- Projets -->
   <section id="projets">
-    <p class="kicker">Projets</p>
-    <h2>Ce que j'ai construit</h2>
-    <p class="section-sub">Filtrez par domaine — chaque projet indique son contexte réel : académique en équipe, en binôme, ou personnel.</p>
+    <p class="kicker" data-i18n="proj_kicker">Projets</p>
+    <h2 data-i18n="proj_h2">Ce que j'ai construit</h2>
+    <p class="section-sub" data-i18n="proj_sub">Filtrez par domaine — chaque projet indique son contexte réel : académique en équipe, en binôme, ou personnel.</p>
     <div class="filters" role="group" aria-label="Filtrer les projets">
-      <button class="filter-btn active" data-filter="all">Tous</button>
+      <button class="filter-btn active" data-filter="all" data-i18n="f_all">Tous</button>
       <button class="filter-btn" data-filter="web">Web</button>
       <button class="filter-btn" data-filter="java">Java</button>
-      <button class="filter-btn" data-filter="conception">Conception</button>
-      <button class="filter-btn" data-filter="embarque">Électronique</button>
+      <button class="filter-btn" data-filter="conception" data-i18n="f_design">Conception</button>
+      <button class="filter-btn" data-filter="embarque" data-i18n="f_elec">Électronique</button>
     </div>
     <div class="projects">
       <article class="project" data-cat="web">
-        <div class="project-visual pv1"><span class="sym">⌖ map</span><span class="ctx">ESIR · en équipe</span></div>
+        <div class="project-visual pv1"><span class="sym">⌖ map</span><span class="ctx" data-i18n="ctx_team">ESIR · en équipe</span></div>
         <div class="project-body">
           <h3>AuraCity</h3>
-          <p>Plateforme cartographique immobilière sur Rennes : les annonces sont affichées sur une carte interactive et peuvent être filtrées selon différents critères.</p>
+          <p data-i18n="p1_d">Plateforme cartographique immobilière sur Rennes : les annonces sont affichées sur une carte interactive et peuvent être filtrées selon différents critères.</p>
           <ul class="tags"><li>JavaScript</li><li>Supabase</li><li>OpenStreetMap</li><li>Git</li></ul>
         </div>
       </article>
       <article class="project" data-cat="java">
-        <div class="project-visual pv2"><span class="sym">✓ test</span><span class="ctx">ESIR · en binôme</span></div>
+        <div class="project-visual pv2"><span class="sym">✓ test</span><span class="ctx" data-i18n="ctx_pair">ESIR · en binôme</span></div>
         <div class="project-body">
-          <h3>Vérification et validation d'un projet existant</h3>
-          <p>Prise en main d'un projet Java existant, écriture de tests, analyse du code et rédaction d'un rapport final de vérification et validation.</p>
+          <h3 data-i18n="p2_t">Vérification et validation d'un projet existant</h3>
+          <p data-i18n="p2_d">Prise en main d'un projet Java existant, écriture de tests, analyse du code et rédaction d'un rapport final de vérification et validation.</p>
           <ul class="tags"><li>Java</li><li>Tests</li><li>Git</li></ul>
         </div>
       </article>
       <article class="project" data-cat="web java">
         <div class="project-visual pv3"><span class="sym">&lt;/&gt; ts</span><span class="ctx">ESIR</span></div>
         <div class="project-body">
-          <h3>Application web en TypeScript</h3>
-          <p>Application web développée en TypeScript dans le cadre de ma formation à l'ESIR — typage strict et code structuré côté front.</p>
+          <h3 data-i18n="p3_t">Application web en TypeScript</h3>
+          <p data-i18n="p3_d">Application web développée en TypeScript dans le cadre de ma formation à l'ESIR — typage strict et code structuré côté front.</p>
           <ul class="tags"><li>TypeScript</li><li>Git</li></ul>
         </div>
       </article>
       <article class="project" data-cat="conception">
         <div class="project-visual pv4"><span class="sym">{ uml }</span><span class="ctx">ESIR</span></div>
         <div class="project-body">
-          <h3>Réservation de billets de cinéma — conception orientée objet</h3>
-          <p>Modélisation UML complète d'un système de réservation de billets de cinéma : diagrammes de cas d'utilisation, de classes, de séquence et d'états.</p>
-          <ul class="tags"><li>UML</li><li>Conception orientée objet</li></ul>
+          <h3 data-i18n="p4_t">Réservation de billets de cinéma — conception orientée objet</h3>
+          <p data-i18n="p4_d">Modélisation UML complète d'un système de réservation de billets de cinéma : diagrammes de cas d'utilisation, de classes, de séquence et d'états.</p>
+          <ul class="tags"><li>UML</li><li data-i18n="tag_oo">Conception orientée objet</li></ul>
         </div>
       </article>
       <article class="project" data-cat="embarque">
-        <div class="project-visual pv5"><span class="sym">⚡ iot</span><span class="ctx">Projet personnel</span></div>
+        <div class="project-visual pv5"><span class="sym">⚡ iot</span><span class="ctx" data-i18n="ctx_perso">Projet personnel</span></div>
         <div class="project-body">
-          <h3>Boîte aux lettres électronique connectée</h3>
-          <p>Boîte aux lettres connectée réalisée avec Arduino : le système détecte le dépôt de courrier et le signale électroniquement.</p>
-          <ul class="tags"><li>Arduino</li><li>Électronique</li></ul>
+          <h3 data-i18n="p5_t">Boîte aux lettres électronique connectée</h3>
+          <p data-i18n="p5_d">Boîte aux lettres connectée réalisée avec Arduino : le système détecte le dépôt de courrier et le signale électroniquement.</p>
+          <ul class="tags"><li>Arduino</li><li data-i18n="tag_elec">Électronique</li></ul>
         </div>
       </article>
     </div>
@@ -475,31 +519,31 @@
 
   <!-- Parcours -->
   <section id="parcours">
-    <p class="kicker">Parcours</p>
-    <h2>Expérience &amp; formation</h2>
+    <p class="kicker" data-i18n="path_kicker">Parcours</p>
+    <h2 data-i18n="path_h2">Expérience &amp; formation</h2>
     <div class="timeline">
       <div class="t-entry">
-        <span class="when">juillet – août 2025</span>
-        <h3>Stagiaire Développeur — ONEE</h3>
-        <p class="where">Office National de l'Électricité et de l'Eau potable · Meknès, Maroc</p>
+        <span class="when" data-i18n="t1_when">juillet – août 2025</span>
+        <h3 data-i18n="t1_t">Stagiaire Développeur — ONEE</h3>
+        <p class="where" data-i18n="t1_where">Office National de l'Électricité et de l'Eau potable · Meknès, Maroc</p>
         <ul>
-          <li>Participation au développement d'une base de données de gestion du parc informatique.</li>
-          <li>Consultation du SICOM (système d'information de l'ONEE).</li>
+          <li data-i18n="t1_b1">Participation au développement d'une base de données de gestion du parc informatique.</li>
+          <li data-i18n="t1_b2">Consultation du SICOM (système d'information de l'ONEE).</li>
         </ul>
       </div>
       <div class="t-entry">
         <span class="when">2024 – 2028</span>
-        <h3>ESIR — cycle ingénieur, Systèmes d'Information</h3>
-        <p class="where">École Supérieure d'Ingénierie de Rennes · actuellement en 2<sup>e</sup> année</p>
+        <h3 data-i18n="t2_t">ESIR — cycle ingénieur, Systèmes d'Information</h3>
+        <p class="where" data-i18n="t2_where">École Supérieure d'Ingénierie de Rennes · actuellement en 2<sup>e</sup> année</p>
       </div>
       <div class="t-entry">
         <span class="when">2022 – 2024</span>
-        <h3>Carnot Prépas — MP</h3>
-        <p class="where">Classes Préparatoires aux Grandes Écoles, Mathématiques et Physique · Meknès, Maroc</p>
+        <h3 data-i18n="t3_t">Carnot Prépas — MP</h3>
+        <p class="where" data-i18n="t3_where">Classes Préparatoires aux Grandes Écoles, Mathématiques et Physique · Meknès, Maroc</p>
       </div>
       <div class="t-entry">
         <span class="when">2021 – 2022</span>
-        <h3>Baccalauréat scientifique, filière Physique — mention Bien</h3>
+        <h3 data-i18n="t4_t">Baccalauréat scientifique, filière Physique — mention Bien</h3>
         <p class="where">Lycée Flowers High School · Meknès, Maroc</p>
       </div>
     </div>
@@ -507,23 +551,23 @@
 
   <!-- Compétences -->
   <section id="competences">
-    <p class="kicker">Compétences</p>
-    <h2>Ma boîte à outils</h2>
+    <p class="kicker" data-i18n="skills_kicker">Compétences</p>
+    <h2 data-i18n="skills_h2">Ma boîte à outils</h2>
     <div class="skills-grid">
       <div class="skill-group">
-        <h3>Langages</h3>
+        <h3 data-i18n="sg1">Langages</h3>
         <ul class="tags"><li>Java</li><li>Python</li><li>C</li><li>C++</li><li>JavaScript</li><li>TypeScript</li><li>HTML</li><li>CSS</li></ul>
       </div>
       <div class="skill-group">
-        <h3>Frameworks &amp; web</h3>
+        <h3 data-i18n="sg2">Frameworks &amp; web</h3>
         <ul class="tags"><li>Spring Boot</li><li>React</li><li>Angular</li><li>NestJS</li><li>FastAPI</li><li>Vue.js</li></ul>
       </div>
       <div class="skill-group">
-        <h3>Bases de données</h3>
+        <h3 data-i18n="sg3">Bases de données</h3>
         <ul class="tags"><li>PostgreSQL</li><li>MySQL</li><li>SQLite</li></ul>
       </div>
       <div class="skill-group">
-        <h3>Outils &amp; méthodes</h3>
+        <h3 data-i18n="sg4">Outils &amp; méthodes</h3>
         <ul class="tags"><li>Git</li><li>Docker</li><li>Linux</li><li>UML</li></ul>
       </div>
     </div>
@@ -534,26 +578,26 @@
     <p class="kicker">Certifications</p>
     <h2>Certifications</h2>
     <ul class="cert-list">
-      <li><strong>Spring Framework for Java Development</strong><span class="org">SkillUp (Coursera) · juin 2026</span></li>
-      <li><strong>Open Source Software Development, Linux and Git — spécialisation</strong><span class="org">The Linux Foundation · novembre 2025</span></li>
-      <li><strong>Linux pour les développeurs</strong><span class="org">The Linux Foundation · novembre 2025</span></li>
-      <li><strong>Outils Linux pour les développeurs</strong><span class="org">The Linux Foundation · novembre 2025</span></li>
-      <li><strong>Méthodes de développement de logiciels libres</strong><span class="org">The Linux Foundation · novembre 2025</span></li>
+      <li><strong>Spring Framework for Java Development</strong><span class="org" data-i18n="cert1_org">SkillUp (Coursera) · juin 2026</span></li>
+      <li><strong data-i18n="cert2">Open Source Software Development, Linux and Git — spécialisation</strong><span class="org" data-i18n="cert2_org">The Linux Foundation · novembre 2025</span></li>
+      <li><strong data-i18n="cert3">Linux pour les développeurs</strong><span class="org" data-i18n="cert3_org">The Linux Foundation · novembre 2025</span></li>
+      <li><strong data-i18n="cert4">Outils Linux pour les développeurs</strong><span class="org" data-i18n="cert4_org">The Linux Foundation · novembre 2025</span></li>
+      <li><strong data-i18n="cert5">Méthodes de développement de logiciels libres</strong><span class="org" data-i18n="cert5_org">The Linux Foundation · novembre 2025</span></li>
     </ul>
   </section>
 
   <!-- Contact -->
   <section id="contact">
     <p class="kicker">Contact</p>
-    <h2>Travaillons ensemble</h2>
+    <h2 data-i18n="contact_h2">Travaillons ensemble</h2>
     <div class="contact-box">
-      <h3>Vous cherchez un stagiaire en développement logiciel ?</h3>
-      <p>Je suis basé à Rennes et mobile dans toute la France pour un stage de 3 mois à partir de juin 2027, sous convention de l'ESIR. Le plus simple pour me joindre :</p>
+      <h3 data-i18n="contact_h3">Vous cherchez un stagiaire en développement logiciel ?</h3>
+      <p data-i18n="contact_p">Je suis basé à Rennes et mobile dans toute la France pour un stage de 3 mois à partir de juin 2027, sous convention de l'ESIR. Le plus simple pour me joindre :</p>
       <div class="contact-row">
         <a class="btn btn-solid" href="mailto:elmekaouim8@gmail.com">elmekaouim8@gmail.com</a>
-        <a class="btn btn-ghost" href="https://www.linkedin.com/in/melmekaoui" target="_blank" rel="noopener">Mon LinkedIn</a>
-        <a class="btn btn-ghost" href="https://github.com/Mohamed-esir" target="_blank" rel="noopener">Mon GitHub</a>
-        <a class="btn btn-ghost" href="data:application/octet-stream;base64,JVBERi0xLjQKJZOMi54gUmVwb3J0TGFiIEdlbmVyYXRlZCBQREYgZG9jdW1lbnQgKG9wZW5zb3VyY2UpCjEgMCBvYmoKPDwKL0YxIDIgMCBSIC9GMiAzIDAgUiAvRjMgNCAwIFIKPj4KZW5kb2JqCjIgMCBvYmoKPDwKL0Jhc2VGb250IC9IZWx2ZXRpY2EgL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcgL05hbWUgL0YxIC9TdWJ0eXBlIC9UeXBlMSAvVHlwZSAvRm9udAo+PgplbmRvYmoKMyAwIG9iago8PAovQmFzZUZvbnQgL0hlbHZldGljYS1Cb2xkIC9FbmNvZGluZyAvV2luQW5zaUVuY29kaW5nIC9OYW1lIC9GMiAvU3VidHlwZSAvVHlwZTEgL1R5cGUgL0ZvbnQKPj4KZW5kb2JqCjQgMCBvYmoKPDwKL0Jhc2VGb250IC9IZWx2ZXRpY2EtT2JsaXF1ZSAvRW5jb2RpbmcgL1dpbkFuc2lFbmNvZGluZyAvTmFtZSAvRjMgL1N1YnR5cGUgL1R5cGUxIC9UeXBlIC9Gb250Cj4+CmVuZG9iago1IDAgb2JqCjw8Ci9Db250ZW50cyA5IDAgUiAvTWVkaWFCb3ggWyAwIDAgNTk1LjI3NTYgODQxLjg4OTggXSAvUGFyZW50IDggMCBSIC9SZXNvdXJjZXMgPDwKL0ZvbnQgMSAwIFIgL1Byb2NTZXQgWyAvUERGIC9UZXh0IC9JbWFnZUIgL0ltYWdlQyAvSW1hZ2VJIF0KPj4gL1JvdGF0ZSAwIC9UcmFucyA8PAoKPj4gCiAgL1R5cGUgL1BhZ2UKPj4KZW5kb2JqCjYgMCBvYmoKPDwKL1BhZ2VNb2RlIC9Vc2VOb25lIC9QYWdlcyA4IDAgUiAvVHlwZSAvQ2F0YWxvZwo+PgplbmRvYmoKNyAwIG9iago8PAovQXV0aG9yIChNb2hhbWVkIEVMIE1FS0FPVUkpIC9DcmVhdGlvbkRhdGUgKEQ6MjAyNjExMjEwNzU5MDMrMDEnMDAnKSAvQ3JlYXRvciAoXCh1bnNwZWNpZmllZFwpKSAvS2V5d29yZHMgKCkgL01vZERhdGUgKEQ6MjAyNjExMjEwNzU5MDMrMDEnMDAnKSAvUHJvZHVjZXIgKFJlcG9ydExhYiBQREYgTGlicmFyeSAtIFwob3BlbnNvdXJjZVwpKSAKICAvU3ViamVjdCAoXCh1bnNwZWNpZmllZFwpKSAvVGl0bGUgKENWIE1vaGFtZWQgRUwgTUVLQU9VSSkgL1RyYXBwZWQgL0ZhbHNlCj4+CmVuZG9iago4IDAgb2JqCjw8Ci9Db3VudCAxIC9LaWRzIFsgNSAwIFIgXSAvVHlwZSAvUGFnZXMKPj4KZW5kb2JqCjkgMCBvYmoKPDwKL0ZpbHRlciBbIC9BU0NJSTg1RGVjb2RlIC9GbGF0ZURlY29kZSBdIC9MZW5ndGggMzE1MAo+PgpzdHJlYW0KR2IhO2Y+QmVkbCZxODAxVyg0LiUnXHJxPD4pW0hRI0FoR0IzVyRUYixNS1k7OFpoMkNpY0Y4JkRjUStUWWVjVzhBaUdQWyp0Vi5qZV5ucz5XW1w1OnBnXjhbSUwnbUpMXEdFYyhhZElGXnAjWzhqcUFUVmhnQmNcUFVsLW1qcXJOVSVwbVQxNE1CcTpwW0RaZUdPXl8hUmJrTF9VQmQ3SFIucSNPb2MpXThXL24yaypvW2JZaSM0X3AyIUJKODw4T3BCWUAnMjxsMC1JMGpkNUxBUiInaGNeWmIlMXBwOUY6XCQpM1pvOjk0NlpwP01GNGwsQ1VrLDhOR2M4UlZlUTlhJVFWNUM0UDhyRClPalZTcFhhPmk9LSFZYCpbXj5LI0M5W2VXSkFKZVJhJmhNMTUqM0VwaCxcUydWK1E8O086W2ZJLTMyQEVybytwPz86L2NQaEU4NyVDaV1EPGoyYU9iWWNhQ0dWaWhOU20raG4lQFx0J2Q8VUNkSG83aEpQL0UwZGBMa0NxRVo+YCZPI0BTbUsjYlZLXzBXdHRVQm1qbmlPMGAjMSY/c0AlM24vMmEnSWBHdE9fVlcmWitWVEZoYjdMOU4sLmNlYiZeZkEtLCdrP14kZlVQSGdXaXU1XCtyb1IuQmlAU1NyMDxJKVYwcCdbNyVwXk41SyRjXUZxa0M+REpSbFI3UVEjZjNDXk9sPydGZWUxKzhYOj1YWHVFPionVmdtP0VDOCIjSWRHLE5gKEkjWDRtYVgiS1xKV1RAJV5UXl4+LnEnIXBOVC5QI2heW0s4biRxTlhUSy1BL0hrV0oyNkVwPk1jKlVeaGhaUFZwXDNGL1VyRi5FNzFwP0o1Xjg7biMwTTVgVlh0UyxAUE5OWyU0XCtoZyNPYnVnNl8hK3ItTEZwalNrRmhZJU8wODZxQio7PVc/ZS8qXGxxbSRCVGtCUWQsRlhGamZaMUAkblI6WSRkUVQncFgoS1pkdUJXOCJGMCUqXSVvZz46NWNTZTg3UGljJFBuUFc/R1l0bFYmK0khO2NxRktgbUtjPjY6UCMoS3MvLSQmRnVkLFI+K2wnOFtaVipZdCM4S0VIcmNFT2hVIXBfYmQ6N1M9bkFOLCVcMy0kVHRJUlJlX2VyWmhPKGdRa3FFQCFtSyElMFNuOypebGc8VG4yKjUhT1s8bSVJQy5pZj46NGdsSCVQcUNua0FOQjVvMl9CTi03Rk5yWitja1FyUFVtYDx0IUU1V0s4VFA6QnRLK0M4QjU3T1owPS0uNTpUW2lgdS4hXyhWaGQ5N0JNaihbKCEvVTJNI11jcTZcTyJRMF4pOWJVZzpEYCc7P1VoQDtaSWtJVComLVklMFE0KUlDaCkhLyg5SjImJ0wiWGRnNWBickRXPm9QWWVBbUdXLCZ1VWNZZ2tjTEE6TiFdLCdzSVsnPlpAcyZnUEBOKDlwc25pc0xyXk4tSypgVmZAQjUiM2tTWlNtJUk/Nl8kQTYvRTkwIy8rQyFMMjBmJ0siNyxCZyMvazYpZl4hamR1USJuOSRtZko6NnBISFlFPFk3XC1vLyVpXC1HJT9tJjUlQ2NLdVg3KSRsJCZZcCsiXj8nTD1nYG5UWlFZbVtFXGhGXm5yaEJqLmE8aWg7TkM7UC0/XE1EM0JuSUEsYi5zSilWNGRka0xeIU9QJDpoZzhbOEdHWylRRHArJlMxTVUnZ1NxQidMPm9tbis6aExEb1wpWFQlWWpDPFtTXGxRJENGNCVEcCdCNj1JYjU2REtMQ0woU0FoOTk/YiQyaDM7VystJ0hgKDZjIjdec1FFXio+dDAnT0soImo2NG5VcSNmU1xjZTU2OCRwMmllKk0lQjsuO0doPD45dSxJa0JwO1slJysnRiFnZnBiJlNyNF5Wa3BdS1YnLExqbkA8a29EVWtRPUVdMEJLUmQlSmRAPzUqRGNkJCJVTm4ydGg/Km5dbGolMzlXVVxtJCk4M20nYnBuRGs8Pi5cWnBXTF5UXW0pZ1tgWighIkI/JVNLalRJM1UpP2NtX0IpQ2wwZGU/cW50J1lpYGxKSTNeaiI0bydnVVxBSVdvPihTKzUxcC1gUGluJE05LiYvVTBaOHVZcSoial4kMFxGZ103ci9XaDEoOTtFK2gtSyJZSnMqQygybVE3T2AhKXFyKSI9KXEuU1YvNCg8JzZGN0xqQGFyakw0Omg5PFNqJztnPmorSiI2PT5XZGA6MDttOmBXSURhJ3I8JDQnLlAwLycpPDdTQjBLNnApcShhaC5aZGlUbXM1OGM/TCc/dCFwK28+P0huLFZIImBPKDJzTC9qKEdZMlkzPzhsbTUqJTMtSSsiIVcqIV1LKHFwKFBoZDJTM0djRSl0ajxtJG8kIjxEaytuZUJNN0gjMCdwblpTbmltVWQhNCY7QF8uNidgNEQ1LEdpSCxZcVdARVNJYm1mNiIyKyNDQ201ZidcNVNBPCwyQSxRa1JtTFBeLkpVW3NqTTw6LlA2YmJKPSxFMVRkLFg9Qm0wNmlsJm5PLVNgMSYkLGxYWFxtXWBkY0YuamlSXFYoVmxhNjsjRmxVTEQ7MCJKZElYaClrJTc/XztPYzNyQSomY2RTbXEtPG02T3VaMCltKkNOOz5NMGZsRTQzME1IPk4jakBfRGAsXSpFQ2RJaEpZUDNBaFFEbURURzoqbGZjYVFBTUApOGw6amRyYzZTaiY1KExNX0JtPD85Oz03OSRGSVcoJS9uT105aT49JzNGIyYmQ1hIYkNsI2FEVUJZQj1STGAwaTojYz83NXNAXyplcy8pLms7JTtvS2psK0BxJWIiamNYTGRxOHRRWDhVN1ZAbXM6dHUtZTFaVE1dKmFMWT1wJlMtQko8RV82O3MoS0A3UFImMyVITmlXMGUtQnBSaC9RNyk8Yio2Rk5qPWdRNys8IS0qI1NpMTxmP0ZXaUFYVGhfJ09LOD9GYkIvP11bTHMhXzxZdVUjKWtXc1I+Y1FHKz5HJCNmZFhcL0NZckErKidcJjtwS1NHaE06XEBDYWVxVG8lMXBmPylgTFVEQW1DNCVyaCMlRE0qRyovUVEual9vT0hGIjk0c0I2WWBgU14yYmBjIWxoRWtXK0NzOV9FPVtwaFleTVBqQiYianEuW1ZdcTA8ZkkpVFBhb1c2PWxnaWowNEhOcUs7bjE7WDNJdW9sZmhlQF46XF5pV19CbyUnLDA5OlteRkJMZT9BRWhINitqMywwdDkkY0RqXkUidVErPlM+MyopRyI4KVQsXjRTM05ORFBDPEB0MT5RZy9PPiRkRSwrIS9cJyMyYGBORCojb1w0UW9cUU9sPzInZCpcOUA+STwsYHJNP1ohRD9QXi8/Q0RWVVZfcUNIKmVKXlE7SG5GM2A1ZyI2aElJLE8vSSpkTCw2XkMrcV9uXE1dYCU2PmxHOlhGTSgsPCUiUic5NmtFW1l0Mk8qSnUkJ24kRiE7LiVSY01pPU9LPGMuJCNnXFhyPVYrIyRDNzhwKXM7NnJhQURMbT1Mcl8xVSRONTROMjA7PzljK01WRG9LTVEnKiRUJWZgYjI8Z0wtZDs8Zl5sIk86Yjk2SSxqV2FxLkcxRypLUzUjWDZrNypFMT4lPW1tYGdBUUI0KDAoNmNjOVxZVG8oP1ApSGlyPzJdQihvSkBxRTZAIUR0UUdGQDUwJFY2LWVsNyNlR1Y9R3I6ZidFbDxkWyhmRSo2TENbKjckKU9jY15tQHFuKXUiY2hqLTNIV1U7YDdfZkU5NjVEOD0ycWBDRTRuPmBBamtLdUVIX2s+XktkdGhyO3Q/KTMoKGVJJTFSVWFFW0lAO0kkYj1ZZ3A9J1B0cmc9YnFLUWVqN0BbJS1zQlkpWUw2UWxqNXJXK2xdbz0vNTNTOjFALlsnQktpJWZDJ1lWTV1CTWIjTEhSSSs0MjgmPSEyVi5ZVSw9J2Y1Y0NGTDFXIiVkdGBzTWlYdXBySic7IW4hM2tMWWFmLiNbbGwpMzxnX0N0TlJmU1pUOGs3MkUrMSJyVFtuN0NzJ2pNLWhfcmRHJGtnIzBxbUhtImcnbVF0Oks2bDVAXXNHYyoiWF84KXBXSmdsJDsoXDRVVT5TSGMxI0gwdSJkU2kpREcuTW4sOmlpXCxCUF1KKW1DcWI6TCptMkJWOEFrTm5JazIrMStbYDMsV2duXkNaNFYublVyImpBYkApV34+ZW5kc3RyZWFtCmVuZG9iagp4cmVmCjAgMTAKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDYxIDAwMDAwIG4gCjAwMDAwMDAxMTIgMDAwMDAgbiAKMDAwMDAwMDIxOSAwMDAwMCBuIAowMDAwMDAwMzMxIDAwMDAwIG4gCjAwMDAwMDA0NDYgMDAwMDAgbiAKMDAwMDAwMDY0OSAwMDAwMCBuIAowMDAwMDAwNzE3IDAwMDAwIG4gCjAwMDAwMDEwMTAgMDAwMDAgbiAKMDAwMDAwMTA2OSAwMDAwMCBuIAp0cmFpbGVyCjw8Ci9JRCAKWzxjYTMxNWVhODhlMjE2YWM4M2YxNmUyYzlhZWU0MjgyNj48Y2EzMTVlYTg4ZTIxNmFjODNmMTZlMmM5YWVlNDI4MjY+XQolIFJlcG9ydExhYiBnZW5lcmF0ZWQgUERGIGRvY3VtZW50IC0tIGRpZ2VzdCAob3BlbnNvdXJjZSkKCi9JbmZvIDcgMCBSCi9Sb290IDYgMCBSCi9TaXplIDEwCj4+CnN0YXJ0eHJlZgo0MzEwCiUlRU9GCg==" download>Mon CV (PDF)</a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/melmekaoui" target="_blank" rel="noopener" data-i18n="btn_linkedin">Mon LinkedIn</a>
+        <a class="btn btn-ghost" href="https://github.com/Mohamed-esir" target="_blank" rel="noopener" data-i18n="btn_github2">Mon GitHub</a>
+        <a class="btn btn-ghost" href="data:application/octet-stream;base64,JVBERi0xLjQKJZOMi54gUmVwb3J0TGFiIEdlbmVyYXRlZCBQREYgZG9jdW1lbnQgKG9wZW5zb3VyY2UpCjEgMCBvYmoKPDwKL0YxIDIgMCBSIC9GMiAzIDAgUiAvRjMgNCAwIFIKPj4KZW5kb2JqCjIgMCBvYmoKPDwKL0Jhc2VGb250IC9IZWx2ZXRpY2EgL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcgL05hbWUgL0YxIC9TdWJ0eXBlIC9UeXBlMSAvVHlwZSAvRm9udAo+PgplbmRvYmoKMyAwIG9iago8PAovQmFzZUZvbnQgL0hlbHZldGljYS1Cb2xkIC9FbmNvZGluZyAvV2luQW5zaUVuY29kaW5nIC9OYW1lIC9GMiAvU3VidHlwZSAvVHlwZTEgL1R5cGUgL0ZvbnQKPj4KZW5kb2JqCjQgMCBvYmoKPDwKL0Jhc2VGb250IC9IZWx2ZXRpY2EtT2JsaXF1ZSAvRW5jb2RpbmcgL1dpbkFuc2lFbmNvZGluZyAvTmFtZSAvRjMgL1N1YnR5cGUgL1R5cGUxIC9UeXBlIC9Gb250Cj4+CmVuZG9iago1IDAgb2JqCjw8Ci9Db250ZW50cyA5IDAgUiAvTWVkaWFCb3ggWyAwIDAgNTk1LjI3NTYgODQxLjg4OTggXSAvUGFyZW50IDggMCBSIC9SZXNvdXJjZXMgPDwKL0ZvbnQgMSAwIFIgL1Byb2NTZXQgWyAvUERGIC9UZXh0IC9JbWFnZUIgL0ltYWdlQyAvSW1hZ2VJIF0KPj4gL1JvdGF0ZSAwIC9UcmFucyA8PAoKPj4gCiAgL1R5cGUgL1BhZ2UKPj4KZW5kb2JqCjYgMCBvYmoKPDwKL1BhZ2VNb2RlIC9Vc2VOb25lIC9QYWdlcyA4IDAgUiAvVHlwZSAvQ2F0YWxvZwo+PgplbmRvYmoKNyAwIG9iago8PAovQXV0aG9yIChNb2hhbWVkIEVMIE1FS0FPVUkpIC9DcmVhdGlvbkRhdGUgKEQ6MjAyNjExMjEwNzU5MDMrMDEnMDAnKSAvQ3JlYXRvciAoXCh1bnNwZWNpZmllZFwpKSAvS2V5d29yZHMgKCkgL01vZERhdGUgKEQ6MjAyNjExMjEwNzU5MDMrMDEnMDAnKSAvUHJvZHVjZXIgKFJlcG9ydExhYiBQREYgTGlicmFyeSAtIFwob3BlbnNvdXJjZVwpKSAKICAvU3ViamVjdCAoXCh1bnNwZWNpZmllZFwpKSAvVGl0bGUgKENWIE1vaGFtZWQgRUwgTUVLQU9VSSkgL1RyYXBwZWQgL0ZhbHNlCj4+CmVuZG9iago4IDAgb2JqCjw8Ci9Db3VudCAxIC9LaWRzIFsgNSAwIFIgXSAvVHlwZSAvUGFnZXMKPj4KZW5kb2JqCjkgMCBvYmoKPDwKL0ZpbHRlciBbIC9BU0NJSTg1RGVjb2RlIC9GbGF0ZURlY29kZSBdIC9MZW5ndGggMzE1MAo+PgpzdHJlYW0KR2IhO2Y+QmVkbCZxODAxVyg0LiUnXHJxPD4pW0hRI0FoR0IzVyRUYixNS1k7OFpoMkNpY0Y4JkRjUStUWWVjVzhBaUdQWyp0Vi5qZV5ucz5XW1w1OnBnXjhbSUwnbUpMXEdFYyhhZElGXnAjWzhqcUFUVmhnQmNcUFVsLW1qcXJOVSVwbVQxNE1CcTpwW0RaZUdPXl8hUmJrTF9VQmQ3SFIucSNPb2MpXThXL24yaypvW2JZaSM0X3AyIUJKODw4T3BCWUAnMjxsMC1JMGpkNUxBUiInaGNeWmIlMXBwOUY6XCQpM1pvOjk0NlpwP01GNGwsQ1VrLDhOR2M4UlZlUTlhJVFWNUM0UDhyRClPalZTcFhhPmk9LSFZYCpbXj5LI0M5W2VXSkFKZVJhJmhNMTUqM0VwaCxcUydWK1E8O086W2ZJLTMyQEVybytwPz86L2NQaEU4NyVDaV1EPGoyYU9iWWNhQ0dWaWhOU20raG4lQFx0J2Q8VUNkSG83aEpQL0UwZGBMa0NxRVo+YCZPI0BTbUsjYlZLXzBXdHRVQm1qbmlPMGAjMSY/c0AlM24vMmEnSWBHdE9fVlcmWitWVEZoYjdMOU4sLmNlYiZeZkEtLCdrP14kZlVQSGdXaXU1XCtyb1IuQmlAU1NyMDxJKVYwcCdbNyVwXk41SyRjXUZxa0M+REpSbFI3UVEjZjNDXk9sPydGZWUxKzhYOj1YWHVFPionVmdtP0VDOCIjSWRHLE5gKEkjWDRtYVgiS1xKV1RAJV5UXl4+LnEnIXBOVC5QI2heW0s4biRxTlhUSy1BL0hrV0oyNkVwPk1jKlVeaGhaUFZwXDNGL1VyRi5FNzFwP0o1Xjg7biMwTTVgVlh0UyxAUE5OWyU0XCtoZyNPYnVnNl8hK3ItTEZwalNrRmhZJU8wODZxQio7PVc/ZS8qXGxxbSRCVGtCUWQsRlhGamZaMUAkblI6WSRkUVQncFgoS1pkdUJXOCJGMCUqXSVvZz46NWNTZTg3UGljJFBuUFc/R1l0bFYmK0khO2NxRktgbUtjPjY6UCMoS3MvLSQmRnVkLFI+K2wnOFtaVipZdCM4S0VIcmNFT2hVIXBfYmQ6N1M9bkFOLCVcMy0kVHRJUlJlX2VyWmhPKGdRa3FFQCFtSyElMFNuOypebGc8VG4yKjUhT1s8bSVJQy5pZj46NGdsSCVQcUNua0FOQjVvMl9CTi03Rk5yWitja1FyUFVtYDx0IUU1V0s4VFA6QnRLK0M4QjU3T1owPS0uNTpUW2lgdS4hXyhWaGQ5N0JNaihbKCEvVTJNI11jcTZcTyJRMF4pOWJVZzpEYCc7P1VoQDtaSWtJVComLVklMFE0KUlDaCkhLyg5SjImJ0wiWGRnNWBickRXPm9QWWVBbUdXLCZ1VWNZZ2tjTEE6TiFdLCdzSVsnPlpAcyZnUEBOKDlwc25pc0xyXk4tSypgVmZAQjUiM2tTWlNtJUk/Nl8kQTYvRTkwIy8rQyFMMjBmJ0siNyxCZyMvazYpZl4hamR1USJuOSRtZko6NnBISFlFPFk3XC1vLyVpXC1HJT9tJjUlQ2NLdVg3KSRsJCZZcCsiXj8nTD1nYG5UWlFZbVtFXGhGXm5yaEJqLmE8aWg7TkM7UC0/XE1EM0JuSUEsYi5zSilWNGRka0xeIU9QJDpoZzhbOEdHWylRRHArJlMxTVUnZ1NxQidMPm9tbis6aExEb1wpWFQlWWpDPFtTXGxRJENGNCVEcCdCNj1JYjU2REtMQ0woU0FoOTk/YiQyaDM7VystJ0hgKDZjIjdec1FFXio+dDAnT0soImo2NG5VcSNmU1xjZTU2OCRwMmllKk0lQjsuO0doPD45dSxJa0JwO1slJysnRiFnZnBiJlNyNF5Wa3BdS1YnLExqbkA8a29EVWtRPUVdMEJLUmQlSmRAPzUqRGNkJCJVTm4ydGg/Km5dbGolMzlXVVxtJCk4M20nYnBuRGs8Pi5cWnBXTF5UXW0pZ1tgWighIkI/JVNLalRJM1UpP2NtX0IpQ2wwZGU/cW50J1lpYGxKSTNeaiI0bydnVVxBSVdvPihTKzUxcC1gUGluJE05LiYvVTBaOHVZcSoial4kMFxGZ103ci9XaDEoOTtFK2gtSyJZSnMqQygybVE3T2AhKXFyKSI9KXEuU1YvNCg8JzZGN0xqQGFyakw0Omg5PFNqJztnPmorSiI2PT5XZGA6MDttOmBXSURhJ3I8JDQnLlAwLycpPDdTQjBLNnApcShhaC5aZGlUbXM1OGM/TCc/dCFwK28+P0huLFZIImBPKDJzTC9qKEdZMlkzPzhsbTUqJTMtSSsiIVcqIV1LKHFwKFBoZDJTM0djRSl0ajxtJG8kIjxEaytuZUJNN0gjMCdwblpTbmltVWQhNCY7QF8uNidgNEQ1LEdpSCxZcVdARVNJYm1mNiIyKyNDQ201ZidcNVNBPCwyQSxRa1JtTFBeLkpVW3NqTTw6LlA2YmJKPSxFMVRkLFg9Qm0wNmlsJm5PLVNgMSYkLGxYWFxtXWBkY0YuamlSXFYoVmxhNjsjRmxVTEQ7MCJKZElYaClrJTc/XztPYzNyQSomY2RTbXEtPG02T3VaMCltKkNOOz5NMGZsRTQzME1IPk4jakBfRGAsXSpFQ2RJaEpZUDNBaFFEbURURzoqbGZjYVFBTUApOGw6amRyYzZTaiY1KExNX0JtPD85Oz03OSRGSVcoJS9uT105aT49JzNGIyYmQ1hIYkNsI2FEVUJZQj1STGAwaTojYz83NXNAXyplcy8pLms7JTtvS2psK0BxJWIiamNYTGRxOHRRWDhVN1ZAbXM6dHUtZTFaVE1dKmFMWT1wJlMtQko8RV82O3MoS0A3UFImMyVITmlXMGUtQnBSaC9RNyk8Yio2Rk5qPWdRNys8IS0qI1NpMTxmP0ZXaUFYVGhfJ09LOD9GYkIvP11bTHMhXzxZdVUjKWtXc1I+Y1FHKz5HJCNmZFhcL0NZckErKidcJjtwS1NHaE06XEBDYWVxVG8lMXBmPylgTFVEQW1DNCVyaCMlRE0qRyovUVEual9vT0hGIjk0c0I2WWBgU14yYmBjIWxoRWtXK0NzOV9FPVtwaFleTVBqQiYianEuW1ZdcTA8ZkkpVFBhb1c2PWxnaWowNEhOcUs7bjE7WDNJdW9sZmhlQF46XF5pV19CbyUnLDA5OlteRkJMZT9BRWhINitqMywwdDkkY0RqXkUidVErPlM+MyopRyI4KVQsXjRTM05ORFBDPEB0MT5RZy9PPiRkRSwrIS9cJyMyYGBORCojb1w0UW9cUU9sPzInZCpcOUA+STwsYHJNP1ohRD9QXi8/Q0RWVVZfcUNIKmVKXlE7SG5GM2A1ZyI2aElJLE8vSSpkTCw2XkMrcV9uXE1dYCU2PmxHOlhGTSgsPCUiUic5NmtFW1l0Mk8qSnUkJ24kRiE7LiVSY01pPU9LPGMuJCNnXFhyPVYrIyRDNzhwKXM7NnJhQURMbT1Mcl8xVSRONTROMjA7PzljK01WRG9LTVEnKiRUJWZgYjI8Z0wtZDs8Zl5sIk86Yjk2SSxqV2FxLkcxRypLUzUjWDZrNypFMT4lPW1tYGdBUUI0KDAoNmNjOVxZVG8oP1ApSGlyPzJdQihvSkBxRTZAIUR0UUdGQDUwJFY2LWVsNyNlR1Y9R3I6ZidFbDxkWyhmRSo2TENbKjckKU9jY15tQHFuKXUiY2hqLTNIV1U7YDdfZkU5NjVEOD0ycWBDRTRuPmBBamtLdUVIX2s+XktkdGhyO3Q/KTMoKGVJJTFSVWFFW0lAO0kkYj1ZZ3A9J1B0cmc9YnFLUWVqN0BbJS1zQlkpWUw2UWxqNXJXK2xdbz0vNTNTOjFALlsnQktpJWZDJ1lWTV1CTWIjTEhSSSs0MjgmPSEyVi5ZVSw9J2Y1Y0NGTDFXIiVkdGBzTWlYdXBySic7IW4hM2tMWWFmLiNbbGwpMzxnX0N0TlJmU1pUOGs3MkUrMSJyVFtuN0NzJ2pNLWhfcmRHJGtnIzBxbUhtImcnbVF0Oks2bDVAXXNHYyoiWF84KXBXSmdsJDsoXDRVVT5TSGMxI0gwdSJkU2kpREcuTW4sOmlpXCxCUF1KKW1DcWI6TCptMkJWOEFrTm5JazIrMStbYDMsV2duXkNaNFYublVyImpBYkApV34+ZW5kc3RyZWFtCmVuZG9iagp4cmVmCjAgMTAKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDYxIDAwMDAwIG4gCjAwMDAwMDAxMTIgMDAwMDAgbiAKMDAwMDAwMDIxOSAwMDAwMCBuIAowMDAwMDAwMzMxIDAwMDAwIG4gCjAwMDAwMDA0NDYgMDAwMDAgbiAKMDAwMDAwMDY0OSAwMDAwMCBuIAowMDAwMDAwNzE3IDAwMDAwIG4gCjAwMDAwMDEwMTAgMDAwMDAgbiAKMDAwMDAwMTA2OSAwMDAwMCBuIAp0cmFpbGVyCjw8Ci9JRCAKWzxjYTMxNWVhODhlMjE2YWM4M2YxNmUyYzlhZWU0MjgyNj48Y2EzMTVlYTg4ZTIxNmFjODNmMTZlMmM5YWVlNDI4MjY+XQolIFJlcG9ydExhYiBnZW5lcmF0ZWQgUERGIGRvY3VtZW50IC0tIGRpZ2VzdCAob3BlbnNvdXJjZSkKCi9JbmZvIDcgMCBSCi9Sb290IDYgMCBSCi9TaXplIDEwCj4+CnN0YXJ0eHJlZgo0MzEwCiUlRU9GCg==" download data-i18n="btn_cv">Mon CV (PDF)</a>
       </div>
     </div>
   </section>
@@ -575,21 +619,146 @@
   var track = document.getElementById('marquee-track');
   if (track) { track.innerHTML += track.innerHTML; }
 
-  /* Machine à écrire */
-  var phrases = ["Développeur Java — Spring Boot", "Développeur JavaScript / TypeScript", "Étudiant ingénieur ESIR — Rennes"];
-  var el = document.getElementById('typed');
-  if (el) {
-    if (reduce) { el.textContent = phrases[0]; }
-    else {
-      var pi = 0, ci = 0, del = false;
-      (function tick(){
-        var p = phrases[pi];
-        el.textContent = p.slice(0, ci);
-        if (!del) { if (ci < p.length) { ci++; setTimeout(tick, 55); } else { del = true; setTimeout(tick, 1900); } }
-        else { if (ci > 0) { ci--; setTimeout(tick, 26); } else { del = false; pi = (pi + 1) % phrases.length; setTimeout(tick, 350); } }
-      })();
-    }
+  /* ---------- Internationalisation FR / EN ---------- */
+  var EN = {
+    nav_about:"About", nav_expertise:"Expertise", nav_projects:"Projects", nav_path:"Journey", nav_skills:"Skills", nav_cv:"My CV",
+    hello:"// Hello, I'm",
+    h1:"Mohamed<br>EL MEKAOUI, <span class=\"accent-word\">software</span> developer",
+    role:"Information Systems · Java / Spring Boot · JavaScript / TypeScript",
+    school:"2<sup>nd</sup>-year engineering student at ESIR, Rennes (2024–2028)",
+    status:"I am looking for a 3-month software development internship starting in June 2027 — available anywhere in France.",
+    btn_projects:"See my projects", btn_github:"My GitHub",
+    stat1:"academic and personal projects", stat2:"internship — ONEE, summer 2025",
+    stat3:"certifications — Spring & Linux Foundation", stat4:"technical skills I work with",
+    about_kicker:"About", about_h2:"My profile, in code and in plain words",
+    about_p1:"I am a 2<sup>nd</sup>-year engineering student at ESIR (Rennes), specializing in Information Systems. I mainly develop in Java with Spring Boot, and in JavaScript / TypeScript on the web side. I also work with PostgreSQL and MySQL databases, and I use Git and Docker in my projects.",
+    about_p2:"In summer 2025, I completed a development internship at ONEE in Meknes (Morocco): I took part in developing an IT asset management database and consulted the SICOM system. I am now looking for a 3-month software development internship starting in June 2027, and I am available anywhere in France.",
+    about_p3:"Languages: bilingual French (DELF B2), Arabic (native), English B2.",
+    about_p4:"This site is hosted on GitHub Pages, from the public repository of my portfolio — the code is visible on my GitHub.",
+    exp_kicker:"Expertise", exp_h2:"What I can do",
+    exp_sub:"Every skill below is backed by a real project or experience from my journey — no theory without practice.",
+    exp1_t:"Backend development",
+    exp1_d:"Designing the business logic and services of an application in Java / Spring Boot, and in NestJS or FastAPI on the JavaScript / Python side.",
+    exp1_p:"→ Certified <b>Spring Framework</b> (Coursera, 2026)",
+    exp2_t:"Web applications",
+    exp2_d:"Building complete web interfaces and applications in JavaScript and TypeScript, with React or Angular.",
+    exp2_p:"→ Projects <b>AuraCity</b> and <b>TypeScript web app</b>",
+    exp3_t:"Databases",
+    exp3_d:"Modeling and querying PostgreSQL, MySQL and SQLite databases: schemas, queries, business data management.",
+    exp3_p:"→ <b>ONEE</b> internship: IT asset database",
+    exp4_t:"Testing & software quality",
+    exp4_d:"Setting up a verification and validation process: writing tests, analyzing existing code, writing a report.",
+    exp4_p:"→ <b>Verification & validation</b> project in Java",
+    exp5_t:"Design & modeling",
+    exp5_d:"Analyzing a need and modeling it in UML: use case, class, sequence and state diagrams.",
+    exp5_p:"→ <b>Movie ticket booking</b> project",
+    exp6_t:"Environment & tools",
+    exp6_d:"Working in a team with Git, containerizing with Docker and working on Linux every day.",
+    exp6_p:"→ <b>4 certifications</b> The Linux Foundation (2025)",
+    soft_h2:"My soft skills",
+    soft_sub:"No invented percentages: every quality is illustrated by a real situation from my journey.",
+    soft1_t:"Teamwork",
+    soft1_d:"Used to working in teams and pairs, with Git as an everyday collaboration tool.",
+    soft1_p:"→ <b>AuraCity</b> in a team, <b>V&V</b> in a pair",
+    soft2_t:"Self-learning",
+    soft2_d:"I keep training outside of classes, up to certification, on the technologies of my field.",
+    soft2_p:"→ <b>5 certifications</b> through self-training",
+    soft3_t:"Rigor & perseverance",
+    soft3_d:"Trained by two years of MP preparatory classes: heavy workload, high standards and consistency.",
+    soft3_p:"→ <b>Carnot Prépas MP</b>, 2022–2024",
+    soft4_t:"Communication",
+    soft4_d:"Comfortable in writing and speaking, in a study context in France and an internship in Morocco.",
+    soft4_p:"→ <b>Bilingual French</b>, native Arabic, English B2",
+    proj_kicker:"Projects", proj_h2:"What I have built",
+    proj_sub:"Filter by field — each project shows its real context: academic team work, pair work, or personal.",
+    f_all:"All", f_design:"Design", f_elec:"Electronics",
+    ctx_team:"ESIR · team project", ctx_pair:"ESIR · pair work", ctx_perso:"Personal project",
+    p1_d:"Real-estate mapping platform for Rennes: listings are displayed on an interactive map and can be filtered by different criteria.",
+    p2_t:"Verification and validation of an existing project",
+    p2_d:"Taking over an existing Java project, writing tests, analyzing the code and writing a final verification and validation report.",
+    p3_t:"Web application in TypeScript",
+    p3_d:"Web application developed in TypeScript as part of my training at ESIR — strict typing and structured front-end code.",
+    p4_t:"Movie ticket booking — object-oriented design",
+    p4_d:"Complete UML modeling of a movie ticket booking system: use case, class, sequence and state diagrams.",
+    tag_oo:"Object-oriented design",
+    p5_t:"Connected electronic mailbox",
+    p5_d:"Connected mailbox built with Arduino: the system detects incoming mail and signals it electronically.",
+    tag_elec:"Electronics",
+    path_kicker:"Journey", path_h2:"Experience & education",
+    t1_when:"July – August 2025", t1_t:"Developer Intern — ONEE",
+    t1_where:"National Office of Electricity and Drinking Water · Meknes, Morocco",
+    t1_b1:"Took part in developing an IT asset management database.",
+    t1_b2:"Consulted the SICOM (ONEE information system).",
+    t2_t:"ESIR — engineering degree, Information Systems",
+    t2_where:"Rennes School of Engineering · currently in 2<sup>nd</sup> year",
+    t3_t:"Carnot Prépas — MP",
+    t3_where:"Preparatory classes for Grandes Écoles, Mathematics and Physics · Meknes, Morocco",
+    t4_t:"Scientific baccalaureate, Physics track — with honors",
+    skills_kicker:"Skills", skills_h2:"My toolbox",
+    sg1:"Languages", sg2:"Frameworks & web", sg3:"Databases", sg4:"Tools & methods",
+    cert1_org:"SkillUp (Coursera) · June 2026",
+    cert2:"Open Source Software Development, Linux and Git — specialization", cert2_org:"The Linux Foundation · November 2025",
+    cert3:"Linux for Developers", cert3_org:"The Linux Foundation · November 2025",
+    cert4:"Linux Tools for Developers", cert4_org:"The Linux Foundation · November 2025",
+    cert5:"Open Source Software Development Methods", cert5_org:"The Linux Foundation · November 2025",
+    contact_h2:"Let's work together", contact_h3:"Looking for a software development intern?",
+    contact_p:"I am based in Rennes and available anywhere in France for a 3-month internship starting in June 2027, under an ESIR agreement. The easiest way to reach me:",
+    btn_linkedin:"My LinkedIn", btn_github2:"My GitHub", btn_cv:"My CV (PDF)"
+  };
+  var CODE_EN = '<span class="k">class</span> <span class="p">Developer</span> {\n  name: <span class="s">"Mohamed EL MEKAOUI"</span>,\n  role: <span class="s">"Engineering student — ESIR"</span>,\n  skills: {\n    backend:  [<span class="s">"Java"</span>, <span class="s">"Spring Boot"</span>, <span class="s">"NestJS"</span>, <span class="s">"FastAPI"</span>],\n    frontend: [<span class="s">"TypeScript"</span>, <span class="s">"JavaScript"</span>, <span class="s">"React"</span>, <span class="s">"Angular"</span>],\n    data:     [<span class="s">"PostgreSQL"</span>, <span class="s">"MySQL"</span>, <span class="s">"SQLite"</span>],\n    tools:    [<span class="s">"Git"</span>, <span class="s">"Docker"</span>, <span class="s">"Linux"</span>, <span class="s">"UML"</span>]\n  },\n  lookingFor: <span class="s">"3-month internship — June 2027"</span>,\n  location: <span class="s">"Rennes — available across France"</span>\n}';
+  var PHRASES = {
+    fr:["Développeur Java — Spring Boot", "Développeur JavaScript / TypeScript", "Étudiant ingénieur ESIR — Rennes"],
+    en:["Java Developer — Spring Boot", "JavaScript / TypeScript Developer", "Engineering Student at ESIR — Rennes"]
+  };
+  var RING = {
+    fr:"DÉVELOPPEMENT LOGICIEL • JAVA • SPRING BOOT • TYPESCRIPT • ",
+    en:"SOFTWARE DEVELOPMENT • JAVA • SPRING BOOT • TYPESCRIPT • "
+  };
+
+  var i18nEls = document.querySelectorAll('[data-i18n]');
+  var FR = {};
+  i18nEls.forEach(function(el){ FR[el.getAttribute('data-i18n')] = el.innerHTML; });
+  var codeEl = document.getElementById('code-block');
+  var CODE_FR = codeEl ? codeEl.innerHTML : "";
+  var ringEl = document.getElementById('ring-text');
+  var lang = 'fr';
+
+  /* Machine à écrire (relancée à chaque changement de langue) */
+  var typedEl = document.getElementById('typed');
+  var typedTimer = null;
+  function startTyped(){
+    if (!typedEl) return;
+    if (typedTimer) { clearTimeout(typedTimer); typedTimer = null; }
+    var phrases = PHRASES[lang];
+    if (reduce) { typedEl.textContent = phrases[0]; return; }
+    var pi = 0, ci = 0, del = false;
+    (function tick(){
+      var p = phrases[pi];
+      typedEl.textContent = p.slice(0, ci);
+      if (!del) { if (ci < p.length) { ci++; typedTimer = setTimeout(tick, 55); } else { del = true; typedTimer = setTimeout(tick, 1900); } }
+      else { if (ci > 0) { ci--; typedTimer = setTimeout(tick, 26); } else { del = false; pi = (pi + 1) % phrases.length; typedTimer = setTimeout(tick, 350); } }
+    })();
   }
+
+  function setLang(l){
+    lang = l;
+    i18nEls.forEach(function(el){
+      var k = el.getAttribute('data-i18n');
+      el.innerHTML = (l === 'en' && EN[k]) ? EN[k] : FR[k];
+    });
+    if (codeEl) codeEl.innerHTML = (l === 'en') ? CODE_EN : CODE_FR;
+    if (ringEl) ringEl.textContent = RING[l];
+    document.documentElement.lang = l;
+    var btn = document.getElementById('lang-toggle');
+    if (btn) btn.textContent = (l === 'en') ? 'FR' : 'EN';
+    try { localStorage.setItem('portfolio-lang', l); } catch(e) {}
+    startTyped();
+  }
+  var toggle = document.getElementById('lang-toggle');
+  if (toggle) toggle.addEventListener('click', function(){ setLang(lang === 'fr' ? 'en' : 'fr'); });
+  var saved = 'fr';
+  try { saved = localStorage.getItem('portfolio-lang') || 'fr'; } catch(e) {}
+  setLang(saved === 'en' ? 'en' : 'fr');
 
   /* Filtres projets */
   var btns = document.querySelectorAll('.filter-btn');
